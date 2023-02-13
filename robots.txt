@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://emredogan.co.uk/sitemap.xml
+Sitemap: https://emredogann.github.io/sitemap.xml
