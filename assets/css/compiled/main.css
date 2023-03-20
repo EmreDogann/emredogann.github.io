@@ -1024,7 +1024,7 @@ select {
   --tw-prose-body: rgba(var(--color-neutral-700), 1);
   --tw-prose-headings: rgba(var(--color-neutral-800), 1);
   --tw-prose-lead: rgba(var(--color-neutral-500), 1);
-  --tw-prose-links: rgba(var(--color-primary-700), 1);
+  --tw-prose-links: rgba(var(--color-primary-500), 1);
   --tw-prose-bold: rgba(var(--color-primary-500), 1);
   --tw-prose-counters: rgba(var(--color-neutral-800), 1);
   --tw-prose-bullets: rgba(var(--color-neutral-500), 1);
@@ -2047,8 +2047,8 @@ select {
   --tw-gradient-to: rgba(var(--color-neutral-100), 1);
 }
 
-.to-primary-400 {
-  --tw-gradient-to: rgba(var(--color-primary-400), 1);
+.to-primary-300 {
+  --tw-gradient-to: rgba(var(--color-primary-300), 1);
 }
 
 .to-secondary-700 {
