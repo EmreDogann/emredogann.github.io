@@ -35,6 +35,7 @@ links = [
   #     { google = "https://www.google.com/" },
   #     { hashnode = "https://username.hashnode.dev" },
   #     { instagram = "https://instagram.com/username" },
+  { itchio = "https://emredogan.itch.io" },
   #     { keybase = "https://keybase.io/username" },
   #     { kickstarter = "https://www.kickstarter.com/profile/username" },
   #     { lastfm = "https://lastfm.com/user/username" },

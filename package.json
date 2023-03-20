@@ -1,0 +1,10 @@
+{
+    "name": "my-website",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+      "server": "hugo server",
+      "dev": "SET NODE_ENV=development & node ./themes/blowfish/node_modules/tailwindcss/lib/cli.js -c ./tailwind.config.js -i ./assets/css/main.css -o ./assets/css/compiled/main.css --jit -w",
+      "build": "SET NODE_ENV=production & node ./themes/blowfish/node_modules/tailwindcss/lib/cli.js -c ./tailwind.config.js -i ./assets/css/main.css -o ./assets/css/compiled/main.css --jit"
+    }
+  }
