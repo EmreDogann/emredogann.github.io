@@ -3,9 +3,9 @@
 {{ with .Params.externalUrl }}
 	<a href="{{ . }}" target="_blank" rel="external" class="min-w-full"> </a>
 {{ else }}
-	<a href="{{ .RelPermalink }}" class="min-w-full bg-violet-500 hover:bg-violet-6000">
+	<a href="{{ .RelPermalink }}" class="min-w-full dark:hover:border-primary-500 transition duration-150 ease-in-out">
 		<div
-			class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative backdrop-blur">
+			class="min-h-full border border-neutral-200 dark:border-neutral-700 dark:hover:border-primary-500 transition duration-150 ease-in-out border-2 rounded overflow-hidden shadow-2xl relative backdrop-blur">
 			{{- with $.Params.images -}}
 				{{- range first 6 . }}
 					<meta property="og:image" content="{{ . | absURL }}" />

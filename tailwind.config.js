@@ -5,7 +5,7 @@ module.exports = {
     "./themes/blowfish/layouts/**/*.html",
     "./themes/blowfish/content/**/*.{html,md}",
     "./node_modules/tw-elements/dist/js/**/*.js",
-	"./hugo_stats.json"
+	// "./hugo_stats.json"
   ],
   darkMode: "class",
   theme: {

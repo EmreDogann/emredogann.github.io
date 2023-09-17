@@ -13,6 +13,7 @@
   "description": "",
   "devDependencies": {
     "autoprefixer": "^10.4.15",
+    "npm-run-all": "^4.1.5",
     "postcss": "^8.4.29",
     "postcss-cli": "^10.1.0",
     "prettier": "3.0.3",
@@ -22,9 +23,10 @@
   },
   "name": "my-website",
   "scripts": {
-    "build_css": "SET NODE_ENV=production & node ./themes/blowfish/node_modules/tailwindcss/lib/cli.js -c ./tailwind.config.js -i ./assets/css/main.css -o ./assets/css/compiled/main.css --minify",
-    "dev": "SET NODE_ENV=development & node ./themes/blowfish/node_modules/tailwindcss/lib/cli.js -c ./tailwind.config.js -i ./assets/css/main.css -o ./assets/css/compiled/main.css --jit -w",
-    "server": "hugo server"
+    "dev": "npm-run-all --parallel dev:tailwindcss dev:server --race --silent",
+    "dev:tailwindcss": "SET NODE_ENV=development & npx tailwindcss -c ./tailwind.config.js -i ./assets/css/main.css -o ./assets/css/compiled/main.css --jit --watch --minify",
+    "dev:server": "hugo server --baseURL http://localhost/ --port 1313 --buildDrafts --cleanDestinationDir --gc --minify --noHTTPCache",
+    "build_css": "SET NODE_ENV=production & npx tailwindcss -c ./tailwind.config.js -i ./assets/css/main.css -o ./assets/css/compiled/main.css --minify"
   },
   "version": "1.0.0"
 }

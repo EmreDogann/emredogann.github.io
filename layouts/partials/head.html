@@ -42,29 +42,23 @@
 	{{ end }}
 	{{ $assets.Add "css" (slice $cssScheme) }}
 
-	{{ $cssMain := "" }}
-	{{ if hugo.IsProduction }}
-		{{ $cssMain = resources.Get "css/compiled/main.css" }}
-	{{ else }}
-		{{ $cssMain = resources.Get "css/main.css" }}
-	{{ end }}
-
+	{{/* Commented code is for if using hugo_stats.json & PostCSS to live rebuild tailwind css files. */}}
+	{{/* {{ $cssMain := "" }} */}} {{/* {{ if hugo.IsProduction }} */}}
+	{{ $cssMain := resources.Get "css/compiled/main.css" }}
+	{{/* {{ else }} */}} {{/* {{ $cssMain = resources.Get "css/main.css" }} */}} {{/* {{ end }} */}}
 	{{ $assets.Add "css" (slice $cssMain) }}
 	{{ $cssCustom := resources.Get "css/custom.css" }}
 	{{ if $cssCustom }}
 		{{ $assets.Add "css" (slice $cssCustom) }}
 	{{ end }}
 
-	{{ $bundleCSS := "" }}
-	{{ if hugo.IsProduction }}
-		{{ $bundleCSS = $assets.Get "css" | resources.Concat "css/main.bundle.css" | resources.Minify | resources.Fingerprint
-			"sha512"
-		}}
-	{{ else }}
-		{{ $options := dict "inlineImports" true }}
-		{{ $bundleCSS = $assets.Get "css" | resources.Concat "css/main.css" | resources.PostCSS $options }}
-	{{ end }}
-
+	{{/* {{ $bundleCSS := "" }} */}} {{/* {{ if hugo.IsProduction }} */}}
+	{{ $bundleCSS := $assets.Get "css" | resources.Concat "css/main.bundle.css" | resources.Minify | resources.Fingerprint
+		"sha512"
+	}}
+	{{/* {{ else }} */}} {{/* {{ $options := dict "inlineImports" true }} */}}
+	{{/* {{ $bundleCSS = $assets.Get "css" | resources.Concat "css/main.css" | resources.PostCSS $options }} */}}
+	{{/* {{ end }} */}}
 
 	<link
 		type="text/css"
