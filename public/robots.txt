@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://emredogan.co.uk/sitemap.xml
