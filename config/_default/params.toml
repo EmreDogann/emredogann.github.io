@@ -12,7 +12,6 @@ autoSwitchAppearance = false
 enableSearch = true
 enableCodeCopy = true
 
-mainSections = ["posts"]
 # robots = ""
 
 disableImageOptimization = false
@@ -35,17 +34,30 @@ showScrollToTop = true
 
 [homepage]
 # layout = "profile" # valid options: page, profile, hero, card, background, custom
-layout = "hero"
+layout = "custom"
 homepageImage = "img/backgroundHome.jpg" # used in: hero, and card
-showRecent = false
-showRecentItems = 10
+
+[homepagePosts]
+mainSections = ["posts"]
+show = false
+showItems = 10
 showMoreLink = true
 showMoreLinkDest = "/posts"
 cardView = false
 cardViewScreenWidth = false
-layoutBackgroundBlur = false             # only used when layout equals background
+layoutBackgroundBlur = false # only used when layout equals background
 
-[article]
+[homepageProjects]
+mainSections = ["projects"]
+show = true
+showItems = 10
+showMoreLink = true
+showMoreLinkDest = "/projects"
+cardView = true
+cardViewScreenWidth = false
+layoutBackgroundBlur = false   # only used when layout equals background
+
+[articlePosts]
 showDate = true
 showViews = false
 showLikes = false
@@ -69,6 +81,35 @@ showTableOfContents = false
 # showRelatedContent = false
 # relatedContentLimit = 3
 showTaxonomies = false
+showAuthorsBadges = false
+showWordCount = false
+showSummary = true
+# sharingLinks = [ "linkedin", "twitter", "reddit", "pinterest", "facebook", "email"]
+
+[articleProjects]
+showDate = false
+showViews = false
+showLikes = false
+showDateUpdated = false
+showAuthor = false
+showHero = false
+# heroStyle = "basic"                # valid options: basic, big, background, thumbAndBackground
+layoutBackgroundBlur = true        # only used when heroStyle equals background or thumbAndBackground
+layoutBackgroundHeaderSpace = true # only used when heroStyle equals background
+showBreadcrumbs = false
+showDraftLabel = true
+showEdit = false
+# editURL = "https://github.com/username/repo/"
+editAppendPath = true
+seriesOpened = false
+showHeadingAnchors = true
+showPagination = true
+invertPagination = false
+showReadingTime = false
+showTableOfContents = false
+# showRelatedContent = false
+# relatedContentLimit = 3
+showTaxonomies = true
 showAuthorsBadges = false
 showWordCount = false
 showSummary = true

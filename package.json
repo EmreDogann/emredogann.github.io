@@ -1,10 +1,30 @@
 {
-    "name": "my-website",
-    "version": "1.0.0",
-    "description": "",
-    "scripts": {
-      "server": "hugo server",
-      "dev": "SET NODE_ENV=development & node ./themes/blowfish/node_modules/tailwindcss/lib/cli.js -c ./tailwind.config.js -i ./assets/css/main.css -o ./assets/css/compiled/main.css --jit -w",
-      "build": "SET NODE_ENV=production & node ./themes/blowfish/node_modules/tailwindcss/lib/cli.js -c ./tailwind.config.js -i ./assets/css/main.css -o ./assets/css/compiled/main.css --jit"
+  "comments": {
+    "dependencies": {},
+    "devDependencies": {
+      "autoprefixer": "project",
+      "postcss": "project",
+      "postcss-cli": "project",
+      "prettier": "project",
+      "prettier-plugin-go-template": "project",
+      "prettier-plugin-toml": "project"
     }
-  }
+  },
+  "description": "",
+  "devDependencies": {
+    "autoprefixer": "^10.4.15",
+    "postcss": "^8.4.29",
+    "postcss-cli": "^10.1.0",
+    "prettier": "3.0.3",
+    "prettier-plugin-go-template": "^0.0.15",
+    "prettier-plugin-toml": "1.0.0",
+    "tailwindcss": "^3.3.3"
+  },
+  "name": "my-website",
+  "scripts": {
+    "build_css": "SET NODE_ENV=production & node ./themes/blowfish/node_modules/tailwindcss/lib/cli.js -c ./tailwind.config.js -i ./assets/css/main.css -o ./assets/css/compiled/main.css --minify",
+    "dev": "SET NODE_ENV=development & node ./themes/blowfish/node_modules/tailwindcss/lib/cli.js -c ./tailwind.config.js -i ./assets/css/main.css -o ./assets/css/compiled/main.css --jit -w",
+    "server": "hugo server"
+  },
+  "version": "1.0.0"
+}

@@ -1,0 +1,7 @@
+# -- Site Configuration --
+# -- Production --
+
+[module]
+[[module.imports]]
+path = "github.com/davidsneighbour/hugo-debug"
+disable = true

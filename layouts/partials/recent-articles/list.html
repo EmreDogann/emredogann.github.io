@@ -1,12 +1,13 @@
 {{ $recentArticles := 5 }}
-{{ $recentArticles = .Site.Params.homepage.showRecentItems }}
+{{ $recentArticles = .Site.Params.homepagePosts.showItems }}
+
 
 <section class="space-y-10 w-full">
-  {{ range first $recentArticles (.Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections)).Pages }}
-    {{ partial "article-link/simple.html" . }}
-    {{ else }}
-    <div class="text-center text-xl font-semibold">
-      <span> Coming soon...</span>
-    </div>
-  {{ end }}
+	{{ range first $recentArticles (where .Site.RegularPages "Type" "in" .Site.Params.homepagePosts.mainSections) }}
+		{{ partial "article-link/simple.html" . }}
+	{{ else }}
+		<div class="text-center text-xl font-semibold">
+			<span> Coming soon...</span>
+		</div>
+	{{ end }}
 </section>
