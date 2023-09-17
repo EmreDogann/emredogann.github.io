@@ -16,7 +16,7 @@
 
 #others
 node_modules
-.hugo_build.lock
+/.hugo_build.lock
 
 # OS generated files
 .DS_Store
@@ -24,3 +24,9 @@ node_modules
 ._*
 .Spotlight-V100
 .Trashes
+
+# Generated files by hugo
+/public/
+/resources/_gen/
+/assets/jsconfig.json
+hugo_stats.json
