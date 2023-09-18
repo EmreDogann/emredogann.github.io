@@ -1,0 +1,195 @@
+{{ define "main" }}
+	{{ .Scratch.Set "scope" "single" }}
+
+
+	<article class="ml-[5%] mr-[5%]">
+		{{ if .Params.showHero | default (.Site.Params.articleProjects.showHero | default false) }}
+			{{ $heroStyle := .Params.heroStyle }}
+			{{ if not $heroStyle }}{{ $heroStyle = .Site.Params.articleProjects.heroStyle }}{{ end }}
+			{{ $heroStyle := print "partials/hero/" $heroStyle ".html" }}
+			{{ if templates.Exists $heroStyle }}
+				{{ partial $heroStyle . }}
+			{{ else }}
+				{{ partial "partials/hero/basic.html" . }}
+			{{ end }}
+		{{ end }}
+
+
+		<div class="flex flex-row">
+			<header id="single_header" class="flex flex-col grow mt-5 max-w-prose">
+				{{ if .Params.showBreadcrumbs | default (.Site.Params.articleProjects.showBreadcrumbs | default false) }}
+					{{ partial "breadcrumbs.html" . }}
+				{{ end }}
+				<h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+					{{ .Title | emojify }}
+				</h1>
+				<div class="mt-3 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+					{{ partial "article-meta/basic.html" (dict "context" . "scope" "single" "metadata" .Site.Params.articleProjects) }}
+				</div>
+
+				{{ $authorsData := .Site.Data.authors }}
+				{{ $taxonomies := .Site.Taxonomies.authors }}
+				{{ $baseURL := .Site.BaseURL }}
+				{{ $taxonomyLink := 0 }}
+				{{ $showAuthor := 0 }}
+
+				{{ if .Params.showAuthor | default (.Site.Params.articleProjects.showAuthor | default true) }}
+					{{ $showAuthor = 1 }}
+					{{ partial "author.html" . }}
+				{{ end }}
+
+				{{ if not (strings.HasSuffix $baseURL "/") }}
+					{{ $baseURL = delimit (slice $baseURL "/") "" }}
+				{{ end }}
+
+				{{ range $author := .Page.Params.authors }}
+					{{ $authorData := index $authorsData $author }}
+					{{- if $authorData -}}
+
+						{{ range $taxonomyname, $taxonomy := $taxonomies }}
+							{{ if (eq $taxonomyname $author) }}
+								{{ $taxonomyLink = delimit (slice $baseURL "/authors/" $author) "" }}
+							{{ end }}
+						{{ end }}
+
+						{{ partial "author-extra.html" (dict "context" . "data" $authorData "link" $taxonomyLink) }}
+					{{- end -}}
+				{{ end }}
+
+				{{ if or $taxonomyLink $showAuthor }}
+					<div class="mb-5"></div>
+				{{ end }}
+
+			</header>
+
+			{{/*  <div class="flex flex-row grow mt-5 gap-x-2 justify-end">
+				{{ with .Params.githubPage }}
+					<a
+						class="hover:text-primary-400 text-primary-500 dark:text-primary-400"
+						href="{{ . }}"
+						target="_blank"
+						role="button">
+						<span class="block iconFull w-10 h-10 hover:scale-[1.05] transition-transform">
+							{{ (resources.Get "icons/github.svg").Content | safeHTML }}
+						</span>
+					</a>
+				{{ end }}
+
+				{{ with .Params.itchPage }}
+					<a
+						class="hover:text-primary-400 text-primary-500 dark:text-primary-400"
+						href="{{ . }}"
+						target="_blank"
+						role="button">
+						<span class="block iconFull w-10 h-10 hover:scale-[1.05] transition-transform">
+							{{ (resources.Get "icons/itchio.svg").Content | safeHTML }}
+						</span>
+					</a>
+				{{ end }}
+			</div>  */}}
+		</div>
+
+		<section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+			{{ if or (and (.Params.showTableOfContents | default (.Site.Params.articleProjects.showTableOfContents | default false)) (in
+				.TableOfContents "<ul")) (.Site.Params.articleProjects.showRelatedPosts | default false)
+			}}
+				<div class="order-first sm:max-w-prose lg:ml-auto px-0 lg:order-last lg:max-w-xs">
+					<div
+						class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky {{ if hasPrefix .Site.Params.header.layout "fixed" -}}
+							lg:top-[140px]
+						{{ else }}
+							lg:top-10
+						{{ end }}
+			">
+						{{ if and (.Params.showTableOfContents | default (.Site.Params.articleProjects.showTableOfContents | default false)) (in
+							.TableOfContents "<ul")
+						}}
+							{{ partial "toc.html" . }}
+						{{ end }}
+						{{ partial "glightbox.html" (dict "context" . "match" "images/*" "gallery" "gallery1") }}
+						{{ if .Site.Params.articleProjects.showRelatedPosts |
+							default false
+						}}
+							sd
+						{{ end }}
+					</div>
+				</div>
+			{{ end }}
+
+
+			<div class="min-w-0 min-h-0 max-w-fit">
+				<div class="flex flex-row grow gap-x-4 justify-start">
+					{{ with .Params.githubPage }}
+						<a
+							class="border rounded-lg hover:rounded-lg hover:bg-primary-800 hover:text-primary-400 text-primary-500 dark:text-primary-400"
+							href="{{ . }}"
+							target="_blank"
+							role="button">
+							<div class="p-2 flex flex-row grow gap-x-2.5 justify-start hover:scale-[1.05] transition-transform">
+								<span class="block iconFull w-8 h-8">
+									{{ (resources.Get "icons/github.svg").Content | safeHTML }}
+								</span>
+								<span class="mt-0.5">
+									Github
+								</span>
+							</div>
+						</a>
+					{{ end }}
+
+					{{ with .Params.itchPage }}
+						<a
+							class="border rounded-lg hover:rounded-lg hover:bg-primary-800 hover:text-primary-400 text-primary-500 dark:text-primary-400"
+							href="{{ . }}"
+							target="_blank"
+							role="button">
+							<div class="p-2 flex flex-row grow gap-x-3.5 justify-start hover:scale-[1.05] transition-transform">
+								<span class="block iconFull w-8 h-8">
+									{{ (resources.Get "icons/itchio.svg").Content | safeHTML }}
+								</span>
+								<span class="mt-0.5">
+									Itch.io
+								</span>
+							</div>
+						</a>
+					{{ end }}
+				</div>
+
+				{{ partial "series.html" . }}
+
+
+				<div class="max-w-prose mb-20">
+					{{ .Content | emojify }}
+				</div>
+
+				{{ partial "series-closed.html" . }}
+				{{ partial "sharing-links.html" . }}
+				{{ partial "related.html" . }}
+			</div>
+
+    	<script>
+        var oid = "views_{{ .File.Path }}"
+        var oid_likes = "likes_{{ .File.Path }}"
+      </script> {{ $jsPage := resources.Get "js/page.js" }}
+			{{ $jsPage = $jsPage | resources.Minify | resources.Fingerprint "sha512" }}
+			<script
+				type="text/javascript"
+				src="{{ $jsPage.RelPermalink }}"
+				integrity="{{ $jsPage.Data.Integrity }}"></script>
+		</section>
+		<footer class="pt-8 max-w-prose print:hidden">
+			{{ partial "article-pagination.html" . }}
+			{{ if .Params.showComments | default (.Site.Params.articleProjects.showComments | default false) }}
+				{{ if templates.Exists "partials/comments.html" }}
+					<div class="pt-3">
+						<hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+						<div class="pt-3">
+							{{ partial "comments.html" . }}
+						</div>
+					</div>
+				{{ else }}
+					{{ warnf "[BLOWFISH] Comments are enabled for %s but no comments partial exists." .File.Path }}
+				{{ end }}
+			{{ end }}
+		</footer>
+	</article>
+{{ end }}

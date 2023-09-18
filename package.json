@@ -13,6 +13,7 @@
   "description": "",
   "devDependencies": {
     "autoprefixer": "^10.4.15",
+    "glightbox": "^3.2.0",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.29",
     "postcss-cli": "^10.1.0",

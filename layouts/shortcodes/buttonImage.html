@@ -1,0 +1,7 @@
+<a
+	class="block max-w-[40%] justify-center"
+	{{ with .Get "href" }}href="{{ . }}"{{ end }}
+	{{ with .Get "target" }}target="{{ . }}"{{ end }}
+	role="button">
+	<img src="{{ (resources.Get (.Get "src")).RelPermalink }}" class="hover:scale-[1.05] transition-transform nozoom" />
+</a>

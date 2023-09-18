@@ -5,6 +5,6 @@ summary: "Short Atmospheric Horror Game"
 cascade:
     showReadingTime: false
     showWordCount: false
-tags: ["Unity3D", "Graphics", "Gameplay"]
-weight: 1
+tags: ["Unity3D", "Graphics", "Gameplay", "Game Jam"]
+weight: 2
 ---
