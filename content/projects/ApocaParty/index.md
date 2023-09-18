@@ -10,6 +10,14 @@ weight: 3
 layout: projectSingle
 itchPage: https://ayperosia.itch.io/apocaparty
 githubPage: https://github.com/EmreDogann/ApocaParty
+
+project:
+    status: completed			# valid options: completed, ongoing, stopped
+    type: gamejam				# valid options: university, personal, gamejam
+    duration: "2 Weeks"
+    software: ["Unity"]
+    languages: ["C#"]
+    role: ["Gameplay Designer", "Gameplay Programmer", "VFX"]
 ---
 <!-- {{< github repo="emredogann/apocaparty" >}} -->
 

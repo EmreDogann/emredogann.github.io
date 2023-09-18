@@ -61,94 +61,62 @@
 				{{ end }}
 
 			</header>
-
-			{{/*  <div class="flex flex-row grow mt-5 gap-x-2 justify-end">
-				{{ with .Params.githubPage }}
-					<a
-						class="hover:text-primary-400 text-primary-500 dark:text-primary-400"
-						href="{{ . }}"
-						target="_blank"
-						role="button">
-						<span class="block iconFull w-10 h-10 hover:scale-[1.05] transition-transform">
-							{{ (resources.Get "icons/github.svg").Content | safeHTML }}
-						</span>
-					</a>
-				{{ end }}
-
-				{{ with .Params.itchPage }}
-					<a
-						class="hover:text-primary-400 text-primary-500 dark:text-primary-400"
-						href="{{ . }}"
-						target="_blank"
-						role="button">
-						<span class="block iconFull w-10 h-10 hover:scale-[1.05] transition-transform">
-							{{ (resources.Get "icons/itchio.svg").Content | safeHTML }}
-						</span>
-					</a>
-				{{ end }}
-			</div>  */}}
 		</div>
 
 		<section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
-			{{ if or (and (.Params.showTableOfContents | default (.Site.Params.articleProjects.showTableOfContents | default false)) (in
-				.TableOfContents "<ul")) (.Site.Params.articleProjects.showRelatedPosts | default false)
-			}}
-				<div class="order-first sm:max-w-prose lg:ml-auto px-0 lg:order-last lg:max-w-xs">
-					<div
-						class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky {{ if hasPrefix .Site.Params.header.layout "fixed" -}}
-							lg:top-[140px]
-						{{ else }}
-							lg:top-10
-						{{ end }}
-			">
-						{{ if and (.Params.showTableOfContents | default (.Site.Params.articleProjects.showTableOfContents | default false)) (in
-							.TableOfContents "<ul")
-						}}
-							{{ partial "toc.html" . }}
-						{{ end }}
-						{{ partial "glightbox.html" (dict "context" . "match" "images/*" "gallery" "gallery1") }}
-						{{ if .Site.Params.articleProjects.showRelatedPosts |
-							default false
-						}}
-							sd
-						{{ end }}
-					</div>
-				</div>
-			{{ end }}
+			<div class="order-first sm:max-w-prose lg:ml-auto px-0 lg:order-last lg:max-w-xs">
+				<div
+					class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky
+					{{ if hasPrefix .Site.Params.header.layout "fixed" -}}
+						lg:top-[140px]
+					{{ else }}
+						lg:top-10
+					{{ end }}
+					">
+					{{ partial "project-meta/basic.html" . }}
 
+					{{ if and (.Params.showTableOfContents | default (.Site.Params.articleProjects.showTableOfContents | default false)) (in .TableOfContents "<ul") }}
+						{{ partial "toc.html" . }}
+					{{ end }}
+
+					{{ partial "glightbox.html" (dict "context" . "match" "images/*" "gallery" "gallery1") }}
+
+					{{ if .Site.Params.articleProjects.showRelatedPosts | default false }}
+						sd
+					{{ end }}
+				</div>
+			</div>
 
 			<div class="min-w-0 min-h-0 max-w-fit">
 				<div class="flex flex-row grow gap-x-4 justify-start">
 					{{ with .Params.githubPage }}
 						<a
-							class="border rounded-lg hover:rounded-lg hover:bg-primary-800 hover:text-primary-400 text-primary-500 dark:text-primary-400"
+							class="border rounded-lg hover:rounded-lg hover:bg-secondary-800 text-secondary-500 dark:text-secondary-400"
 							href="{{ . }}"
 							target="_blank"
 							role="button">
-							<div class="p-2 flex flex-row grow gap-x-2.5 justify-start hover:scale-[1.05] transition-transform">
+							<div
+								class="py-2 px-4 flex flex-row grow gap-x-2.5 justify-start hover:scale-[1.05] transition-transform">
 								<span class="block iconFull w-8 h-8">
 									{{ (resources.Get "icons/github.svg").Content | safeHTML }}
 								</span>
-								<span class="mt-0.5">
-									Github
-								</span>
+								<span class="mt-0.5"> Github </span>
 							</div>
 						</a>
 					{{ end }}
 
 					{{ with .Params.itchPage }}
 						<a
-							class="border rounded-lg hover:rounded-lg hover:bg-primary-800 hover:text-primary-400 text-primary-500 dark:text-primary-400"
+							class="border rounded-lg hover:rounded-lg hover:bg-secondary-800 text-secondary-500 dark:text-secondary-400"
 							href="{{ . }}"
 							target="_blank"
 							role="button">
-							<div class="p-2 flex flex-row grow gap-x-3.5 justify-start hover:scale-[1.05] transition-transform">
+							<div
+								class="py-2 px-4 flex flex-row grow gap-x-3.5 justify-start hover:scale-[1.05] transition-transform">
 								<span class="block iconFull w-8 h-8">
 									{{ (resources.Get "icons/itchio.svg").Content | safeHTML }}
 								</span>
-								<span class="mt-0.5">
-									Itch.io
-								</span>
+								<span class="mt-0.5"> Itch.io </span>
 							</div>
 						</a>
 					{{ end }}

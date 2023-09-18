@@ -30,3 +30,5 @@ node_modules
 /resources/_gen/
 /assets/jsconfig.json
 hugo_stats.json
+
+*.code-workspace

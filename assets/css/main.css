@@ -16,7 +16,7 @@ body button {
 
 /* Scale SVG icons to full size of parent */
 .iconFull svg {
-	@apply h-full w-auto;
+	@apply h-full w-full;
 }
 
 /* Search */

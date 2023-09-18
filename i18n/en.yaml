@@ -73,3 +73,11 @@ recent:
 
 project:
     show_more: 'All Projects'
+    status:
+        completed: 'Completed'
+        ongoing: 'Ongoing'
+        stopped: 'Stopped'
+    type:
+        university: 'University Project'
+        personal: 'Personal Project'
+        gamejam: 'Game Jam'

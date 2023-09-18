@@ -1,0 +1,30 @@
+{{ $context := . }}
+{{ $frontMatterParam := "" }}
+{{ $title := "" }}
+
+{{ if (reflect.IsMap . ) }}
+	{{ $context = .context }}
+	{{ $frontMatterParam = cond (not .param) $frontMatterParam (print "project." .param) }}
+	{{ $title = cond (not .title) $title .title }}
+{{ end }}
+
+{{ with $context }}
+	<div class="flex flex-col flex-wrap items-start">
+		<span class="px-2 font-extrabold text-primary-400"> {{ $title | title }} </span>
+		<span class="px-2 prose dark:prose-invert">
+			{{ with i18n (print $frontMatterParam "." (.Param $frontMatterParam) ) }}
+				{{ . | markdownify | emojify }}
+			{{ else }}
+				{{ if eq (printf "%T" (.Param $frontMatterParam)) "[]interface {}" }}
+					{{ range .Param $frontMatterParam }}
+						<div class="flex flex-row justify-start">
+							{{ . | markdownify | emojify }}
+						</div>
+					{{ end }}
+				{{ else }}
+					{{ .Param $frontMatterParam | markdownify | emojify }}
+				{{ end }}
+			{{ end }}
+		</span>
+	</div>
+{{ end }}
