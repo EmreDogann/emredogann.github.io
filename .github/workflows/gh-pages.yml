@@ -39,7 +39,7 @@ jobs:
                   # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-data
                   cache-dependency-path: '**/package-lock.json'
 
-            - run: npm ci
+            - run: cd ./themes/blowfish && npm ci && cd ../..
             - run: npm run build_css
 
             - name: Build
