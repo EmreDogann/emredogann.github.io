@@ -1,0 +1,6 @@
+.gzoomInQuick {
+    animation: gzoomIn 0.3s ease;
+}
+.gzoomOutQuick {
+    animation: gzoomOut 0.3s ease;
+}
