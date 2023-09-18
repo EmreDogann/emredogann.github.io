@@ -2,3 +2,6 @@
 	path = themes/blowfish
 	url = https://github.com/nunocoracao/blowfish.git
 	branch = main
+[submodule "themes/plugin-glightbox"]
+	path = themes/plugin-glightbox
+	url = https://github.com/EmreDogann/plugin-glightbox
