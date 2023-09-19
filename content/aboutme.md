@@ -12,12 +12,12 @@ background: "reaction-diffusion"
 
 **I'm Emre, a Programmer that loves games and game making!**
 
-This website is a collection of all my past and ongoing work. Work that is focused mainly on **Game Development** but sometimes venturing out into other topics that fancy me.
+This website serves as a portfolio showcasing my past and ongoing work, primarily focused on **Game Development**. However, I occasionally delve into other topics that pique my interest.
 
-I started programming at the age of 15, with the main motivation being to make my own games. My Economics teacher at the time noticed my interest and recommended I try out the school's Computer Science course. So, during my final year of highschool, my Economics teacher also happened to be my Computer Science teacher! {{< superSmall "(small world...the department was understaffed)" >}}
+My journey in programming began at the age of 15 when I was motivated to create my own games. It was during this time that my Economics teacher recognized my passion and suggested I explore the school's Computer Science course. Funnily enough, during my final year, that same Economics teacher became my Computer Science instructor! {{< superSmall "(small world...the department was understaffed)" >}}
 
-During my Computer Science studies, I grew interested in **low-level computing** and was fascinated by old-school games such as **Doom** and **Wolfenstein 3D**, which tried to squeeze the most out of their hardware.
+During my Computer Science studies, I developed a fascination with **low-level computing**, inspired by classic games like **Doom** and **Wolfenstein 3D**—games that pushed hardware to its limits.
 
-So, in my quest to explore how those older games were made, I delved into the world of shaders, graphics rendering, GPUs, and have ever since been working mainly as a **Graphics Engineer**.
+My curiosity led me into the intricate realm of shaders, graphics rendering, and GPUs. Since then, I've primarily worked as a **Graphics Engineer**.
 
-Since then, I've worked on **graphics rendering** projects both in and outside of school, and applied that knowledge to games that I would work on in game jams or otherwise.
+Throughout my journey, I've been involved in various **graphics rendering** projects, both within and outside of school, and I've applied this knowledge to games I've worked on during game jams and other ventures.
