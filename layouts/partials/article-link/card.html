@@ -5,7 +5,7 @@
 {{ else }}
 	<a href="{{ .RelPermalink }}" class="min-w-full dark:hover:border-primary-500 transition duration-150 ease-in-out">
 		<div
-			class="min-h-full border border-neutral-200 dark:border-neutral-700 dark:hover:border-primary-500 transition duration-150 ease-in-out border-2 rounded overflow-hidden shadow-2xl relative backdrop-blur">
+			class="group min-h-full border border-neutral-200 dark:border-neutral-700 dark:hover:border-primary-500 transition duration-150 ease-in-out border-2 rounded overflow-hidden shadow-2xl relative backdrop-blur">
 			{{- with $.Params.images -}}
 				{{- range first 6 . }}
 					<meta property="og:image" content="{{ . | absURL }}" />
@@ -18,25 +18,29 @@
 					{{ with .Site.Params.defaultFeaturedImage }}{{ $featured = resources.Get . }}{{ end }}
 				{{ end -}}
 				{{ if .Params.hideFeatureImage }}{{ $featured = false }}{{ end }}
-				{{- with $featured -}}
-					{{ if $disableImageOptimization }}
-						{{ with . }}
-							<div
-								class="w-full thumbnail_card nozoom"
-								style="background-image:url({{ .RelPermalink }});"></div>
+
+
+				<div class="overflow-hidden">
+					{{- with $featured -}}
+						{{ if $disableImageOptimization }}
+							{{ with . }}
+								<div
+									class="w-full h-full thumbnail_card nozoom group-hover:scale-[1.05] transition duration-150 ease-in-out"
+									style="background-image:url({{ .RelPermalink }});"></div>
+							{{ end }}
+						{{ else }}
+							{{ with .Resize "600x" }}
+								<div
+									class="w-full h-full thumbnail_card nozoom group-hover:scale-[1.05] transition duration-150 ease-in-out"
+									style="background-image:url({{ .RelPermalink }});"></div>
+							{{ end }}
 						{{ end }}
-					{{ else }}
-						{{ with .Resize "600x" }}
-							<div
-								class="w-full thumbnail_card nozoom"
-								style="background-image:url({{ .RelPermalink }});"></div>
-						{{ end }}
-					{{ end }}
-				{{- else -}}
-					{{- with $.Site.Params.images }}
-						<meta property="og:image" content="{{ index . 0 | absURL }}" />
-					{{ end -}}
-				{{- end -}}
+					{{- else -}}
+						{{- with $.Site.Params.images }}
+							<meta property="og:image" content="{{ index . 0 | absURL }}" />
+						{{ end -}}
+					{{- end -}}
+				</div>
 			{{- end -}}
 
 			{{ if and .Draft .Site.Params.article.showDraftLabel }}
@@ -72,7 +76,7 @@
 				</div>
 
 				{{ if .Params.showSummary | default (.Site.Params.list.showSummary | default false) }}
-					<div class="py-1 prose dark:prose-invert">
+					<div class="py-2 prose dark:prose-invert font-normal">
 						{{ .Summary | emojify }}
 					</div>
 				{{ end }}

@@ -11,9 +11,16 @@
 # ordered by weight from lowest to highest.
 
 [[main]]
-name = "Resume"
-url = "https://emredogan.co.uk/EmreDoganCV.pdf"
+name = "About Me"
+pre = "question"
+pageRef = "aboutme"
 weight = 10
+
+[[main]]
+name = "Resume"
+pre = "file"
+url = "https://emredogan.co.uk/EmreDoganCV.pdf"
+weight = 20
 
 # [[main]]
 # name = "Blog"
@@ -62,6 +69,27 @@ weight = 10
 # The footer menu is displayed at the bottom of the page, just before
 # the copyright notice. Configure as per the main menu above.
 
+[[footer]]
+name = "contact@emredogan.co.uk"
+weight = 10
+
+[[footer]]
+name = "Github"
+pre = "github"
+url = "https://github.com/EmreDogann"
+weight = 20
+
+[[footer]]
+name = "Itch.io"
+pre = "itchio"
+url = "https://emredogan.itch.io/"
+weight = 30
+
+[[footer]]
+name = "LinkedIn"
+pre = "linkedin"
+url = "https://www.linkedin.com/in/emre-dogann/"
+weight = 40
 
 # [[footer]]
 #   name = "Tags"

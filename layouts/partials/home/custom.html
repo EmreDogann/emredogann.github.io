@@ -45,7 +45,7 @@
 								{{ range $links := . }}
 									{{ range $name, $url := $links }}
 										<a
-											class="px-2 py-1 hover:text-primary-400 text-primary-500 dark:text-primary-400"
+											class="px-2 py-1 hover:bg-transparent hover:text-primary-600 hover:dark:text-primary-500 text-primary-500 dark:text-primary-400"
 											href="{{ $url }}"
 											target="_blank"
 											aria-label="{{ $name | title }}"

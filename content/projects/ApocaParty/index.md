@@ -1,11 +1,11 @@
 ---
 title: "ApocaParty"
 date: 2023-09-15T02:28:44+01:00
-summary: "Diner Dash inspired party planner game"
+summary: "Chaotic party planner game for<br>Summer Slow Jams 2023: Narrative"
 cascade:
     showReadingTime: false
     showWordCount: false
-tags: ["Unity3D", "Graphics", "Gameplay", "AI", "UI", "Game Jam"]
+tags: ["Gameplay", "Game Jam", "Unity", "C#"]
 weight: 3
 layout: projectSingle
 itchPage: https://ayperosia.itch.io/apocaparty

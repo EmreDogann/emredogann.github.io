@@ -10,8 +10,8 @@
 
 {{ with $context }}
 	<div class="flex flex-col flex-wrap items-start">
-		<span class="px-2 font-extrabold text-primary-400"> {{ $title | title }} </span>
-		<span class="px-2 prose dark:prose-invert flex flex-row gap-x-4">
+		<span class="font-extrabold text-primary-400"> {{ $title | title }} </span>
+		<span class=" prose dark:prose-invert flex flex-row gap-x-4">
 			{{ with i18n (print $frontMatterParam "." (.Param $frontMatterParam) ) }}
 				{{ . | markdownify | emojify }}
 			{{ else }}
