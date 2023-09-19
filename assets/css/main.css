@@ -19,6 +19,11 @@ body button {
 	@apply h-full w-full;
 }
 
+/* Scale SVG icons to full size of parent */
+.svgFull svg {
+	@apply h-full w-full;
+}
+
 /* Search */
 #search-query::-webkit-search-cancel-button,
 #search-query::-webkit-search-decoration,

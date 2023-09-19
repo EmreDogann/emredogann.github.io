@@ -1,6 +1,13 @@
 {{ define "main" }}
 	{{ .Scratch.Set "scope" "singleCentered" }}
 
+	{{ $backgroundSVG := resources.Get (print "img/" .Params.background ".svg") }}
+	{{ if $backgroundSVG }}
+		<span class="fixed svgFull scale-150 inset-0 -z-10 text-primary-900 text-opacity-10 scrollBarCompensate">
+			{{ $backgroundSVG.Content | safeHTML }}
+		</span>
+	{{ end }}
+
 
 	<article>
 		{{ if .Params.showHero | default (.Site.Params.article.showHero | default false) }}
@@ -89,7 +96,7 @@
 			{{ end }}
 
 
-			<div class="min-w-prose min-h-0 max-w-fit">
+			<div class="min-h-0 max-w-fit">
 				{{ partial "series.html" . }}
 
 

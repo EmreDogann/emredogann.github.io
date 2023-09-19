@@ -5,6 +5,7 @@ showReadingTime: false
 showWordCount: false
 showDate: false
 layout: singleCentered
+background: "reaction-diffusion"
 ---
 
 ### Hey there!
