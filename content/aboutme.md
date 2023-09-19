@@ -20,8 +20,3 @@ During my Computer Science studies, I grew interested in **low-level computing**
 So, in my quest to explore how those older games were made, I delved into the world of shaders, graphics rendering, GPUs, and have ever since been working mainly as a **Graphics Engineer**.
 
 Since then, I've worked on **graphics rendering** projects both in and outside of school, and applied that knowledge to games that I would work on in game jams or otherwise.
-\
-\
-{{< quote author="John Carmack" >}}
-Low-level programming is good for the programmer's soul.
-{{< /quote >}}
