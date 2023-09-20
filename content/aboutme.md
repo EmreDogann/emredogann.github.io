@@ -5,7 +5,9 @@ showReadingTime: false
 showWordCount: false
 showDate: false
 layout: singleCentered
-background: "reaction-diffusion"
+background: "grayscottWorms-Invert"
+backgroundScale: 0.3
+backgroundOpacity: 0.05
 ---
 
 ### Hey there!

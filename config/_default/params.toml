@@ -35,7 +35,9 @@ showScrollToTop = true
 [homepage]
 # layout = "profile" # valid options: page, profile, hero, card, background, custom
 layout = "custom"
-homepageImage = "img/backgroundHome.jpg" # used in: hero, and card
+homepageImage = "img/backgroundHome.jpg"          # used in: hero, and card
+homepagePattern = "img/grayscottWorms-Invert.svg" # File must be tileable svg
+layoutBackgroundBlur = false                      # only used when layout equals background
 
 [homepagePosts]
 mainSections = ["posts"]
@@ -45,7 +47,6 @@ showMoreLink = true
 showMoreLinkDest = "/posts"
 cardView = false
 cardViewScreenWidth = false
-layoutBackgroundBlur = false # only used when layout equals background
 
 [homepageProjects]
 mainSections = ["projects"]
@@ -55,7 +56,6 @@ showMoreLink = true
 showMoreLinkDest = "/projects"
 cardView = true
 cardViewScreenWidth = false
-layoutBackgroundBlur = false   # only used when layout equals background
 
 [articlePosts]
 showDate = true

@@ -20,7 +20,7 @@
 				{{ if .Params.hideFeatureImage }}{{ $featured = false }}{{ end }}
 
 
-				<div class="overflow-hidden">
+				<div class="overflow-hidden thumbnail_container transition duration-500 opacity-0">
 					{{- with $featured -}}
 						{{ if $disableImageOptimization }}
 							{{ with . }}
@@ -85,3 +85,6 @@
 		</div>
 	</a>
 {{ end }}
+
+
+<script defer type="text/javascript" src="{{ (resources.Get "js/onThumbnailLoaded.js").RelPermalink }}"></script>
