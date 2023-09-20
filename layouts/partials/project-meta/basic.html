@@ -26,9 +26,27 @@
 {{ end }}
 
 
-<div class="flex flex-col flex-wrap items-start gap-y-2">
-	{{/* Output partials */}}
-	{{ with ($meta.Get "partials") }}
-		{{ delimit . "" }}
-	{{ end }}
-</div>
+<details id="projectDetails" class="mb-5 overflow-hidden rounded-lg ltr:pl-5 rtl:-mr-5 rtl:pr-5">
+	<summary
+		class="py-1 text-lg font-semibold cursor-pointer bg-primary-200 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-primary-800 dark:text-neutral-100">
+		Project Info
+	</summary>
+	<div
+		class="flex flex-col flex-wrap items-start gap-y-2 pt-2 pb-2 backdrop-blur-md bg-neutral-800 bg-opacity-30 border-dashed border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+		{{/* Output partials */}}
+		{{ with ($meta.Get "partials") }}
+			{{ delimit . "" }}
+		{{ end }}
+	</div>
+</details>
+
+<script type="text/javascript" src="{{ (resources.Get "js/detailsAnimation.js").RelPermalink }}"></script>
+
+<script>
+	var details = document.getElementById('projectDetails');
+	if (window.matchMedia('screen and (max-width: 768px)').matches) {
+		details.toggleAttribute('open', false);
+	} else {
+		details.toggleAttribute('open', true);
+	}
+</script>

@@ -66,7 +66,7 @@
 		<section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
 			<div class="order-first sm:max-w-prose lg:ml-auto px-0 lg:order-last lg:max-w-xs">
 				<div
-					class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky
+					class="toc md:ltr:pl-5 rtl:pr-5 print:hidden lg:sticky
 					{{ if hasPrefix .Site.Params.header.layout "fixed" -}}
 						lg:top-[140px]
 					{{ else }}
@@ -124,6 +124,7 @@
 
 				{{ partial "series.html" . }}
 
+				{{/* {{ partial "carousel.html" (dict "context" . "match" "images/*" "interval" "2000") }} */}}
 
 				<div class="max-w-prose mb-20">
 					{{ .Content | emojify }}

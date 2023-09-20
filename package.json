@@ -24,8 +24,10 @@
   "name": "my-website",
   "scripts": {
     "dev": "npm-run-all --parallel dev:tailwindcss dev:server --race --silent",
+    "devlan": "npm-run-all --parallel dev:tailwindcss dev:serverlan --race --silent",
     "dev:tailwindcss": "SET NODE_ENV=development & npx tailwindcss -c ./tailwind.config.js -i ./assets/css/main.css -o ./assets/css/compiled/main.css --jit --watch --minify",
     "dev:server": "hugo server --baseURL http://localhost/ --port 1313 --buildDrafts --cleanDestinationDir --gc --minify --noHTTPCache",
+    "dev:serverlan": "hugo server --bind 192.168.0.15 --baseURL http://192.168.0.15 --port 1313 --buildDrafts --cleanDestinationDir --gc --minify --noHTTPCache",
     "build_css": "SET NODE_ENV=production & npx tailwindcss -c ./tailwind.config.js -i ./assets/css/main.css -o ./assets/css/compiled/main.css --minify"
   },
   "version": "1.0.0"

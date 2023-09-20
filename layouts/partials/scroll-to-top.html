@@ -1,8 +1,8 @@
-<div id="top-scroller" class="hidden pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+<div id="top-scroller" class="pointer-events-none absolute top-[125vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
 	<a
 		id="scrollToTopBtn"
-		href="#the-top"
-		class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+		{{/* href="#the-top" */}}
+		class="pointer-events-auto cursor-pointer sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
 		aria-label="{{ i18n "nav.scroll_to_top_title" }}"
 		title="{{ i18n "nav.scroll_to_top_title" }}">
 		&uarr;
@@ -17,17 +17,17 @@
 			var topBtn = document.getElementById('scrollToTopBtn');
 			var topBtnDiv = document.getElementById('top-scroller');
 
-			toggleScroll(topBtnDiv);
+			{{/*  toggleScroll(topBtnDiv);  */}}
 
 			// On Click, Scroll to the page's top, replace 'smooth' with 'auto' if you don't want smooth scrolling
 			topBtn.onclick = () => {
-				window.scrollTo({ top: 0, behavior: 'smooth' });
+				window.scrollTo({ top: 0, behavior: "smooth" });
 				document.activeElement.blur();
 			};
 
-			window.onscroll = () => {
+			{{/*  window.onscroll = () => {
 				toggleScroll(topBtnDiv);
-			};
+			};  */}}
 
 			function toggleScroll(topBtnDiv) {
 				if (window.pageYOffset >= window.innerHeight * 0.26) {

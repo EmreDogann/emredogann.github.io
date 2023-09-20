@@ -23,6 +23,8 @@ project:
 
 <!-- {{< buttonImage src="img/Itchio/logos/app-icon.png" href="https://ayperosia.itch.io/apocaparty" target="_blank" >}} -->
 
+{{< carousel images="images/*" aspectRatio="16-9" >}}
+
 ## Overview
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non scelerisque eros, sit amet feugiat felis. Maecenas pellentesque varius quam quis pretium. Nulla sit amet ante quis sem molestie finibus id nec augue. Cras eget suscipit dui, ut rhoncus nulla. In condimentum fermentum euismod. Duis dictum mauris sit amet ex fringilla, vel sollicitudin arcu euismod. Morbi tempus bibendum nulla quis tristique. Mauris tincidunt felis in metus condimentum, vel luctus sem blandit. Sed risus dolor, feugiat vitae erat ornare, porta maximus dui. Sed semper, est a tincidunt fermentum, mi nulla convallis augue, vel rhoncus augue sapien vel magna. Aenean vitae laoreet lacus, tempor convallis eros. Nunc pretium consequat arcu, ac mollis tortor dignissim consectetur. Nunc tempor rutrum erat in faucibus.
