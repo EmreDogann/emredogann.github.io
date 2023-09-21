@@ -4,8 +4,8 @@ function setDetailsHeight(selector, wrapper = document) {
 
 		// From: https://stackoverflow.com/a/29881817
 		var computedStyle = getComputedStyle(detail);
-		var elementHeight = detail.clientHeight;  // height with padding
-		var elementWidth = detail.clientWidth;   // width with padding
+		var elementHeight = detail.getBoundingClientRect().height;
+		var elementWidth = detail.getBoundingClientRect().width;
 		elementHeight -= parseFloat(computedStyle.paddingTop) + parseFloat(computedStyle.paddingBottom);
 		elementWidth -= parseFloat(computedStyle.paddingLeft) + parseFloat(computedStyle.paddingRight);
 
@@ -17,7 +17,7 @@ function setDetailsHeight(selector, wrapper = document) {
 		return entries.forEach(entry => {
 			const detail = entry.target;
 			const openStatus = detail.open;
-			const width = parseInt(detail.dataset.width, 10);
+			const width = parseFloat(detail.dataset.width);
 
 			if (width !== entry.contentRect.width) {
 				detail.removeAttribute('style');
