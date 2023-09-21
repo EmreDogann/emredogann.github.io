@@ -1,7 +1,8 @@
 .gscrollbar-fixer {
-	margin-right: auto;
+	margin-right: auto !important;
 }
 
-html.glightbox-open {
-	overflow: initial;
-  }
+.glightbox-open {
+	overflow: hidden;
+	height: 100%;
+}
