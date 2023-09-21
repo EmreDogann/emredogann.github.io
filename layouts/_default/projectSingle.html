@@ -1,5 +1,18 @@
 {{ define "main" }}
+	{{ $disableImageOptimization := .Page.Site.Params.disableImageOptimization | default false }}
 	{{ .Scratch.Set "scope" "single" }}
+
+	{{ $content := (.Page.Resources.ByType "image") }}
+	{{ $content = (.Page.Resources.Match "images/*") }}
+
+	{{ $resizedContent := slice }}
+	{{ if not $disableImageOptimization }}
+		{{ range $image := $content }}
+			{{ $resizedContent = $resizedContent | append ($image.Resize "1920x1080") }}
+		{{ end }}
+
+		{{ $content = $resizedContent }}
+	{{ end }}
 
 
 	<article class="ml-[5%] mr-[5%]">
@@ -64,7 +77,7 @@
 		</div>
 
 		<section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
-			<div class="order-first sm:max-w-prose lg:ml-auto px-0 lg:order-last lg:max-w-xs">
+			<div class="order-first sm:max-w-prose lg:ml-auto px-0 lg:order-last lg:max-w-xs grow">
 				<div
 					class="toc md:ltr:pl-5 rtl:pr-5 print:hidden lg:sticky
 					{{ if hasPrefix .Site.Params.header.layout "fixed" -}}
@@ -79,16 +92,18 @@
 						{{ partial "toc.html" . }}
 					{{ end }}
 
-					{{ partial "glightbox.html" (dict "context" . "match" "images/*" "gallery" "gallery1") }}
 
+					<div class="hidden lg:block">
+						{{ partial "glightbox.html" (dict "context" . "content" $content "gallery" "gallery1") }}
+					</div>
 					{{ if .Site.Params.articleProjects.showRelatedPosts | default false }}
 						sd
 					{{ end }}
 				</div>
 			</div>
 
-			<div class="min-w-0 min-h-0 max-w-fit">
-				<div class="flex flex-row grow gap-x-4 justify-start">
+			<div class="min-w-0 min-h-0 max-w-prose">
+				<div class="ignore-Prose-Padding flex flex-row flex-wrap grow gap-4 justify-center lg:justify-start">
 					{{ with .Params.githubPage }}
 						<a
 							class="border rounded-lg hover:rounded-lg hover:bg-secondary-800 text-secondary-500 dark:text-secondary-400"
@@ -124,7 +139,10 @@
 
 				{{ partial "series.html" . }}
 
-				{{/* {{ partial "carousel.html" (dict "context" . "match" "images/*" "interval" "2000") }} */}}
+
+				<section class="mt-10 block lg:hidden">
+					{{ partial "carousel.html" (dict "context" . "content" $content "interval" "2000" "gallery" "gallery2") }}
+				</section>
 
 				<div class="max-w-prose mb-20">
 					{{ .Content | emojify }}

@@ -1,6 +1,11 @@
-{{ $images := (.context.Page.Resources.ByType "image") }}
-{{ if .match }}
-	{{ $images = (.context.Page.Resources.Match .match) }}
+{{ $disableImageOptimization := .Page.Site.Params.disableImageOptimization | default false }}
+
+{{ $content := .content }}
+{{ if not .content }}
+	{{ $content = (.context.Page.Resources.ByType "image") }}
+	{{ if .match }}
+		{{ $content = (.context.Page.Resources.Match .match) }}
+	{{ end }}
 {{ end }}
 {{ $id := delimit (slice "carousel" now.UnixNano) "-" }}
 {{ $interval := default "2000" .interval }}
@@ -11,7 +16,7 @@
 		class="absolute right-0 bottom-0 left-0 z-[2] mx-[15%] mb-10 flex list-none justify-center p-0"
 		data-te-carousel-indicators>
 		{{ $num := 0 }}
-		{{ range $images }}
+		{{ range $content }}
 			<button
 				type="button"
 				data-te-target="#{{ $id }}"
@@ -26,20 +31,40 @@
 	</div>
 	<div class="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
 		{{ $num := 0 }}
-		{{ range $images }}
-			<div
+		{{ range $image := $content }}
+			{{ if and (not $disableImageOptimization) (not $.content ) }}
+				{{ with $.resolution }}
+					{{ $image = $image.Resize . }}
+				{{ else }}
+					{{ $image = .Resize "640x" }}
+				{{ end }}
+			{{ end }}
+
+
+			<a
+				href="{{ $image.RelPermalink }}"
 				class="relative float-left -mr-[100%] {{ if not (eq $num 0) }}
 					hidden
-				{{ end }} w-full transition-transform duration-[{{ $interval }}ms] ease-in-out motion-reduce:transition-none"
+				{{ end }} w-full transition-transform duration-[{{ $interval }}ms] ease-in-out motion-reduce:transition-none glightbox"
 				data-te-carousel-item
-				{{ if eq $num 0 }}data-te-carousel-active{{ end }}>
-				<div class="ratio-16-9 single_hero_background">
+				{{ if eq $num 0 }}data-te-carousel-active{{ end }}
+				{{ with $.gallery }}
+					data-gallery="{{ . }}"
+				{{ else }}
+					data-gallery="{{ $.Page.File.UniqueID }}"
+				{{ end }}
+				{{ if or ($.title) ($.description) }}
+					data-glightbox="title:{{ $.title | default "" }};description:{{ $.description | default "" }}"
+				{{ end }}>
+				<div style="--aspect-ratio:{{ div $image.Width (float $image.Height) }};">
 					<img
-						src="{{ . }}"
-						class="block absolute top-0 object-cover w-full h-full nozoom"
+						src="{{ $image.RelPermalink }}"
+						width="{{ $image.Width }}"
+						height="{{ $image.Height }}"
+						class="my-0 nozoom"
 						alt="carousel image {{ $num }}" />
 				</div>
-			</div>
+			</a>
 
 			{{ $num = add $num 1 }}
 		{{ end }}
@@ -84,7 +109,7 @@
 		</span>
 		<span
 			class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
-			>Nextsads</span
+			>Next</span
 		>
 	</button>
 </div>
