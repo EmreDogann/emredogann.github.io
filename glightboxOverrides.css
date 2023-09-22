@@ -6,3 +6,9 @@
 	overflow: hidden;
 	height: 100%;
 }
+
+/* From: https://github.com/biati-digital/glightbox/issues/22#issuecomment-1003146535 */
+/* when .glightbox-open height is 100%, activating the lightbox will cause screen to scroll to top. */
+html.glightbox-open {
+	overflow: initial;
+}
