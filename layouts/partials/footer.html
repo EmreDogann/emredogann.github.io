@@ -54,11 +54,51 @@
 	</div>
   <script>
     {{ if not .Site.Params.disableImageZoom | default true }}
-    mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
-      margin: 24,
-      background: 'rgba(0,0,0,0.5)',
-      scrollOffset: 0,
-    })
+		const zoom = mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+			margin: 24,
+			background: 'rgba(0,0,0,0.5)',
+			scrollOffset: 0,
+		})
+
+		var srcsetAttr = [];
+
+		for (const element of zoom.getImages()) {
+			if (element.classList.contains("dynBRadius")) {
+				element.style.setProperty("--height", element.clientHeight + "px");
+			}
+		}
+
+		zoom
+		.on('close', ({ target }) => {
+			if (srcsetAttr === null) {
+				return;
+			}
+
+			target.setAttribute('srcset', srcsetAttr)
+			target.removeAttribute('data-zoom-srcset')
+		})
+		.on('closed', ({ target }) => {
+			if (srcsetAttr === null) {
+				return;
+			}
+
+			target.style.removeProperty("min-height");
+		})
+		.on('open', ({ target }) => {
+			if (target.hasAttribute('srcset')) {
+				srcsetAttr = target.getAttribute('srcset');
+				if (srcsetAttr === null) {
+					return;
+				}
+			}
+
+			// `srcset` is being removed because of a small bug
+			// https://github.com/francoischalifour/medium-zoom/issues/92
+			target.style.setProperty("--height", target.clientHeight + "px");
+			target.style.setProperty("min-height", target.clientHeight + "px");
+			target.setAttribute('data-zoom-srcset', srcsetAttr)
+			target.removeAttribute('srcset')
+		})
     {{ end }}
   </script> {{ $jsProcess := resources.Get "js/process.js" }}
 	{{ $jsProcess = $jsProcess | resources.Minify | resources.Fingerprint "sha512" }}

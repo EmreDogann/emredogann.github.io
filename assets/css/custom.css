@@ -14,6 +14,28 @@
 	border: 1px solid red;
 }
 
+.prose :where(p):not(:where([class~=not-prose] *)) {
+	margin-bottom: 0.75em;
+}
+
+.prose :where(ul):not(:where([class~=not-prose] *)) {
+	margin-top: 0.5em;
+}
+
+.prose :where(li):not(:where([class~=not-prose] *)) {
+	margin-top: 0.15em;
+	margin-bottom: 0.15em;
+}
+
+.prose :where(ul ul,ul ol,ol ul,ol ol):not(:where([class~=not-prose] *)) {
+	margin-top: 0.15em;
+	margin-bottom: 0.15em;
+}
+
+.dynBRadius {
+	border-radius: calc(var(--height) * 0.0125);
+}
+
 /* Duplicate classes to increase specificity. Used to override blowfish's prose padding added to the first child. */
 .max-w-prose.max-w-prose.max-w-prose.max-w-prose .ignore-Prose-Padding {
 	margin-top: 0;
@@ -37,19 +59,36 @@ details[open] {
 } 
 
 @supports (--custom:property) {
-[style*="--aspect-ratio"] {
-	position: relative;
+	[style*="--aspect-ratio"] {
+		position: relative;
+	}
+
+	[style*="--aspect-ratio"]::before {
+		content: "";
+		display: block;
+		padding-bottom: calc(100% / (var(--aspect-ratio)));
+	}  
+
+	[style*="--aspect-ratio"] > :first-child {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+	}
 }
 
-[style*="--aspect-ratio"]::before {
-	content: "";
-	display: block;
-	padding-bottom: calc(100% / (var(--aspect-ratio)));
-}  
+/* Overrides for hint.css (tooltip styling) */
+[class*="hint--"]:before {
+	border-width: 8px;
+	margin-bottom: -16px;
+}
 
-[style*="--aspect-ratio"] > :first-child {
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 100%;
+[class*="hint--"]:after {
+	font-family: inherit;
+	text-shadow: 0 -1px 1px black;
+	box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.hint--rounded:after {
+	border-radius: 8px;
 }

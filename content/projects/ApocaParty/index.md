@@ -1,15 +1,19 @@
 ---
 title: "ApocaParty"
 date: 2023-09-15T02:28:44+01:00
-summary: "Chaotic party planner game for<br>Summer Slow Jams 2023: Narrative"
+summary: "Chaotic party planner game for<br>**Summer Slow Jams 2023: Narrative**"
 cascade:
     showReadingTime: false
     showWordCount: false
 tags: ["Gameplay", "Game Jam", "Unity", "C#"]
-weight: 3
+weight: 50
+
 layout: projectSingle
+
 itchPage: https://ayperosia.itch.io/apocaparty
 githubPage: https://github.com/EmreDogann/ApocaParty
+
+showcaseRegex: "images/Showcase*.png"	# Regex for images to show on page
 
 project:
     status: completed			# valid options: completed, ongoing, stopped
@@ -17,7 +21,7 @@ project:
     duration: "2 Weeks"
     software: ["Unity"]
     languages: ["C#"]
-    role: ["Gameplay Designer", "Gameplay Programmer", "VFX"]
+    role: ["Gameplay Designer", "Gameplay Programmer"]
 ---
 <!-- {{< github repo="emredogann/apocaparty" >}} -->
 
@@ -25,18 +29,65 @@ project:
 
 <!-- {{< carousel images="images/*" aspectRatio="16-9" >}} -->
 
-## Overview
+### Overview
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non scelerisque eros, sit amet feugiat felis. Maecenas pellentesque varius quam quis pretium. Nulla sit amet ante quis sem molestie finibus id nec augue. Cras eget suscipit dui, ut rhoncus nulla. In condimentum fermentum euismod. Duis dictum mauris sit amet ex fringilla, vel sollicitudin arcu euismod. Morbi tempus bibendum nulla quis tristique. Mauris tincidunt felis in metus condimentum, vel luctus sem blandit. Sed risus dolor, feugiat vitae erat ornare, porta maximus dui. Sed semper, est a tincidunt fermentum, mi nulla convallis augue, vel rhoncus augue sapien vel magna. Aenean vitae laoreet lacus, tempor convallis eros. Nunc pretium consequat arcu, ac mollis tortor dignissim consectetur. Nunc tempor rutrum erat in faucibus.
+Apocaparty is a 2D strategy-lite and time management game inspired by the likes of [Diner Dash](https://en.wikipedia.org/wiki/Diner_Dash) made during [Summer Slow Jams 2023: Narrative](https://itch.io/jam/ssjnarrative).
 
-## Contributions
+You play as Cthulhu, tasked with organizing and managing {{< tooltip "Azathoth's waking up party" "According to Lovecraft lore, reality is Azathoth’s dream, and when it wakes up the “true reality” asserts itself and the one we know of ceases to exist." >}}. Keep your guests, the four horsemen of the apocalypse, happy by fulfilling all their demands before the timer runs out and Azathoth awakens.
 
-Nulla ut vehicula nulla. Praesent sed venenatis diam. Sed urna augue, vulputate id nisl placerat, sagittis bibendum massa. Pellentesque fringilla rhoncus varius. Nullam lacinia, quam eget tincidunt dictum, orci mi commodo mi, et congue massa ex eget arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed vehicula enim vitae ipsum tristique rhoncus. Vivamus dapibus magna sed lobortis viverra. Ut at erat eu sem hendrerit vestibulum. Mauris et ante id lectus hendrerit commodo. Aenean eget lacus lorem. Donec ac venenatis arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent varius justo purus, sed feugiat massa fermentum in.
+### Contributions
 
-## Challenges
+For this game, I was tasked with implementing the main game mechanics:
 
-Cras quam ex, accumsan quis nibh volutpat, sollicitudin pellentesque nisi. Donec in scelerisque magna. Fusce sit amet mi a ex accumsan laoreet id vel nisl. Vestibulum in libero vitae nulla mattis gravida at sit amet velit. Sed cursus, orci in sodales dapibus, orci nunc cursus leo, nec lacinia enim tellus vitae mauris. Donec sed dolor eros. In eget eros nibh. Nunc tempor enim vitae dignissim efficitur. Fusce ut condimentum neque. Fusce at interdum erat. Nullam hendrerit dictum tellus id laoreet. In a nulla ut mauris tempus malesuada. Integer maximus risus hendrerit pharetra sollicitudin. Curabitur placerat facilisis consectetur. Aliquam congue sit amet lectus in dignissim.
+- UI
+- Interaction & Controls
+- Audio Playback
+- AI
+- Event Scripting
+  - Tutorial
+  - Win/Lose State
 
-Aenean sollicitudin, purus vel tincidunt varius, mi lectus dapibus lacus, non egestas ipsum ligula eget libero. Vestibulum quis congue risus, quis tempus nisl. Fusce varius felis tellus, id feugiat tellus auctor quis. Nunc id condimentum turpis, id iaculis risus. Vivamus sagittis lectus eu pulvinar interdum. Morbi ac convallis sapien. Etiam volutpat odio at laoreet mattis. Maecenas posuere ac tortor non efficitur.
+I also helped develop other mechanics such as:
 
-Nulla sed elit nisi. Donec eu quam nunc. Phasellus pretium elit enim, ac placerat nisi tincidunt quis. Maecenas consectetur nisi sapien, at blandit elit ornare eu. Sed dapibus ligula sed porttitor condimentum. Cras pharetra diam sit amet rutrum tempus. Etiam ultricies lacus at risus blandit volutpat. Mauris nec est non elit egestas ornare non id ex. Ut condimentum faucibus mi, sit amet lacinia elit rhoncus nec.
+- Dialogue System
+
+#### Guests
+
+The gameplay loop focuses on constantly pressuring the player by overwhelming them with guest demands/needs. Guests can make different requests, which the player must fulfill in order to keep them happy.
+
+For the guest AI, I took inspiration from [Needs-Based AIs](http://www.zubek.net/robert/publications/Needs-based-AI-draft.pdf) implemented in games such as The Sims. Each guest has a set of metrics (such as hunger and thirst) that continually tick down and can also be influenced by external events occurring in the game world (e.g. power outage).
+
+Requests can only be fulfilled by the player completing a set of actions. Instead of hardcoding these actions, I implemented a simple [Action List](https://allenchou.net/2012/07/action-lists-they-are-cooler-than-commands/). These action lists are integrated into the editor via a custom editor script, allowing for designers on the team to create new actions lists on the fly using predetermined building blocks.
+
+{{< figure
+    src="images/ActionList.png"
+    alt="Action List for Drink Refills"
+    caption="Action List for Drink Refills."
+	scale=0.6
+	optimize-image=true
+>}}
+
+#### UI
+
+I created a UI system that allowed us to quickly spin-up UI views and link them together to create pause menus but was also used for the dialogue system's UI to great success.
+The system works similar to layers in a photo manipulation software, with it keeping track of a stack of UI views it can navigate. Views have hooks for when they are popped and pushed from the stack, allowing for functionality such as transition animations.
+
+#### Event Scripting
+
+This was a difficult part of the project. Once we made an MVP, we quickly realized that the mechanics were too convoluted and therefore people had trouble figuring out what to do. We tackled this by stripping out a lot of mechanics and simplifying the gameplay loop to make it easier to digest. Along with that, we also decided to create a tutorial for the game to help ease players in.
+
+I went back and forth with the game designers a lot to decide the best ways the convey information to the player without making the tutorial too hand-holdy, as was a worry the rest of the team had from their past game jams.
+
+All the tutorial scripting was done using Unity's timeline system & API. Custom playables were created to facilitate the experimentation of the tutorial. Such playables included:
+- Controlling sprite sorting order.
+- Controlling interactable object states.
+- Controlling AI.
+- Integration into the project's dialogue system developed by fellow programmers.
+- Text popup with animation and audio.
+
+{{< figure
+    src="images/TutorialTimeline.png"
+    alt="The Unity Timeline for the game's tutorial."
+    caption="The tutorial timeline sequence."
+	optimize-image=true
+>}}

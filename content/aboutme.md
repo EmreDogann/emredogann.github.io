@@ -6,8 +6,8 @@ showWordCount: false
 showDate: false
 layout: singleCentered
 background: "grayscottWorms-Invert"
-backgroundScale: 0.3
-backgroundOpacity: 0.05
+backgroundScale: 0.25
+backgroundOpacity: 0.50
 ---
 
 ### Hey there!
@@ -16,10 +16,10 @@ backgroundOpacity: 0.05
 
 This website serves as a portfolio showcasing my past and ongoing work, primarily focused on **Game Development**. However, I occasionally delve into other topics that pique my interest.
 
-My journey in programming began at the age of 15 when I was motivated to create my own games. It was during this time that my Economics teacher recognized my passion and suggested I explore the school's Computer Science course. Funnily enough, during my final year, that same Economics teacher became my Computer Science instructor! {{< superSmall "(small world...the department was understaffed)" >}}
+My journey in programming began at the age of 15 when I was motivated to create my own games. It was during this time that my Economics teacher recognized my passion and suggested I explore the school's Computer Science course. Funnily enough, during my final year, that same Economics teacher also became my Computer Science instructor! {{< superSmall "(small world...the department was understaffed)" >}}
 
 During my Computer Science studies, I developed a fascination with **low-level computing**, inspired by classic games like **Doom** and **Wolfenstein 3D**—games that pushed hardware to its limits.
 
-My curiosity led me into the intricate realm of shaders, graphics rendering, and GPUs. Since then, I've primarily worked as a **Graphics Engineer**.
+My curiosity led me into the intricate realm of shaders, graphics rendering, and GPUs. Since then, I've primarily worked as a generalist game developer with a focus on **Graphics Engineering**.
 
-Throughout my journey, I've been involved in various **graphics rendering** projects, both within and outside of school, and I've applied this knowledge to games I've worked on during game jams and other ventures.
+Throughout my journey, I've been involved in various graphics rendering projects, both within and outside of school, and I've applied this knowledge to games I've worked on during game jams and other ventures.

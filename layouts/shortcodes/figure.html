@@ -1,0 +1,70 @@
+{{ $disableImageOptimization := or .Site.Params.disableImageOptimization (not (.Get "optimize-image" | default true)) | default false }}
+{{ if .Get "default" }}
+  {{ template "_internal/shortcodes/figure.html" . }}
+{{ else }}
+  {{ $url := urls.Parse (.Get "src") }}
+  {{ $altText := .Get "alt" }}
+  {{ $caption := .Get "caption" }}
+  {{ $href := .Get "href" }}
+  {{ $class := .Get "class" }}
+  {{ $nozoom := .Get "nozoom" | default false }}
+  {{ if findRE "^https?" $url.Scheme }}
+    <figure>
+      <img class="my-0 rounded-md" src="{{ $url.String }}" alt="{{ $altText }}" />
+      {{ with $caption }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
+    </figure>
+  {{ else }}
+    {{ $resource := "" }}
+    {{ if $.Page.Resources.GetMatch ($url.String) }}
+      {{ $resource = $.Page.Resources.GetMatch ($url.String) }}
+    {{ else if resources.GetMatch ($url.String) }}
+      {{ $resource = resources.Get ($url.String) }}
+    {{ end }}
+    {{ with $resource }}
+      <figure {{ with $class }}class="{{ . }}"{{ end }}>
+        {{ with $href }}<a href="{{ . }}">{{ end }}
+          {{ if $disableImageOptimization }}
+			<img
+				class="my-0 rounded-md{{ if $nozoom }} nozoom {{ end }} dynBRadius"
+				{{ if isset $.Params "scale" }}
+					{{ $scaledWidth := (int (mul .Width ($.Get "scale"))) }}
+					src="{{ (.Resize (print $scaledWidth "x") ).RelPermalink }}"
+				{{ else }}
+					src="{{ .RelPermalink }}"
+				{{ end }}
+				data-zoom-src="{{ .RelPermalink }}"
+				alt="{{ $altText }}"
+			/>
+          {{ else }}
+			<img
+				class="my-0 {{ if $nozoom }} nozoom {{ end }} dynBRadius"
+				srcset="
+				{{ if isset $.Params "scale" }}
+					{{ $scale := $.Get "scale" }}
+					{{ (.Resize (print (int (mul 330 $scale)) "x")).RelPermalink }} 330w,
+					{{ (.Resize (print (int (mul 660 $scale)) "x")).RelPermalink }} 660w,
+					{{ (.Resize (print (int (mul 1024 $scale)) "x")).RelPermalink }} 1024w,
+					{{ (.Resize (print (int (mul 1320 $scale)) "x")).RelPermalink }} 2x"
+					src="{{ (.Resize (print (int (mul 660 $scale)) "x")).RelPermalink }}"
+				{{ else }}
+					{{ (.Resize "330x").RelPermalink }} 330w,
+					{{ (.Resize "660x").RelPermalink }} 660w,
+					{{ (.Resize "1024x").RelPermalink }} 1024w,
+					{{ (.Resize "1320x").RelPermalink }} 2x"
+					src="{{ (.Resize "660x").RelPermalink }}"
+				{{ end }}
+				data-zoom-src="{{ .RelPermalink }}"
+				alt="{{ $altText }}"
+			/>
+          {{ end }}
+        {{ if $href }}</a>{{ end }}
+        {{ with $caption }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
+      </figure>
+    {{ else }}
+      <figure>
+        <img class="my-0 rounded-md{{ if $nozoom }} nozoom{{ end }}" src="{{ $url.String }}" alt="{{ $altText }}" />
+        {{ with $caption }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
+      </figure>
+    {{ end }}
+  {{ end }}
+{{ end }}

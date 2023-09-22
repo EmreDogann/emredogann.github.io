@@ -50,7 +50,7 @@ cardViewScreenWidth = false
 
 [homepageProjects]
 mainSections = ["projects"]
-show = false
+show = true
 showItems = 10
 showMoreLink = true
 showMoreLinkDest = "/projects"

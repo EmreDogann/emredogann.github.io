@@ -11,7 +11,7 @@
 		<span
 			id="backgroundPattern"
 			data-pattern-scale="{{ cond (isset .Params "backgroundscale") .Params.backgroundScale 1.0 }}"
-			class="fixed svgFull inset-0 -z-10 text-primary-500 opacity-0 transition-opacity duration-300"
+			class="fixed svgFull inset-0 -z-10 text-primary-900 opacity-0 transition-opacity duration-300"
 			style=" --tw-text-opacity: {{ cond (isset .Params "backgroundopacity") .Params.backgroundopacity 0.05 }}">
 			{{ $backgroundSVG.Content | safeHTML }}
 		</span>

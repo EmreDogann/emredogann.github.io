@@ -3,7 +3,7 @@
 	{{ .Scratch.Set "scope" "single" }}
 
 	{{ $content := (.Page.Resources.ByType "image") }}
-	{{ $content = (.Page.Resources.Match "images/*") }}
+	{{ $content = (.Page.Resources.Match .Params.showcaseRegex) }}
 
 	{{ $resizedContent := slice }}
 	{{ if not $disableImageOptimization }}

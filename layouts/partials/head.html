@@ -33,6 +33,10 @@
 			safeHTML
 		}}
 	{{ end -}}
+
+
+	<link type="text/css" rel="stylesheet" href="{{ (resources.Get "css/hint.css").RelPermalink }}" />
+
 	{{/* Asset bundles */}}
 	{{ $assets := newScratch }}
 
@@ -174,8 +178,7 @@
 		{{ end }}
 	{{ end }}
 
-
+	{{/* External Libraries */}}
 	<script defer type="text/javascript" src="{{ (resources.Get "js/backgroundPattern.js").RelPermalink }}"></script>
-
 	{{ partial "glightboxIncludes.html" . }}
 </head>

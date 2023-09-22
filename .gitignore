@@ -31,4 +31,6 @@ node_modules
 /assets/jsconfig.json
 hugo_stats.json
 
+# VSCode specific
+/.vscode
 *.code-workspace
