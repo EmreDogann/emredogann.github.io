@@ -77,9 +77,9 @@
 		</div>
 
 		<section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
-			<div class="order-first sm:max-w-prose lg:ml-auto px-0 lg:order-last lg:max-w-xs grow">
+			<div class="order-first sm:max-w-prose px-0 lg:order-last lg:max-w-xs grow">
 				<div
-					class="toc md:ltr:pl-5 rtl:pr-5 print:hidden lg:sticky
+					class="toc lg:ltr:pl-5 rtl:pr-5 print:hidden lg:sticky
 					{{ if hasPrefix .Site.Params.header.layout "fixed" -}}
 						lg:top-[140px]
 					{{ else }}
@@ -92,17 +92,19 @@
 						{{ partial "toc.html" . }}
 					{{ end }}
 
+					{{ if isset .Params "showcaseregex" }}
+						<div class="hidden lg:block">
+							{{ partial "glightbox.html" (dict "context" . "content" $content "gallery" "gallery1") }}
+						</div>
+					{{ end }}
 
-					<div class="hidden lg:block">
-						{{ partial "glightbox.html" (dict "context" . "content" $content "gallery" "gallery1") }}
-					</div>
 					{{ if .Site.Params.articleProjects.showRelatedPosts | default false }}
 						sd
 					{{ end }}
 				</div>
 			</div>
 
-			<div class="min-w-0 min-h-0 max-w-prose">
+			<div class="min-w-0 lg:min-w-min-prose min-h-0 max-w-prose lg:mr-[2rem]">
 				<div class="ignore-Prose-Padding flex flex-row flex-wrap grow gap-4 justify-center lg:justify-start">
 					{{ with .Params.githubPage }}
 						<a
@@ -139,10 +141,12 @@
 
 				{{ partial "series.html" . }}
 
+				{{ if isset .Params "showcaseregex" }}
+					<section class="mt-10 block lg:hidden">
+						{{ partial "carousel.html" (dict "context" . "content" $content "interval" "2000" "gallery" "gallery2") }}
+					</section>
+				{{ end }}
 
-				<section class="mt-10 block lg:hidden">
-					{{ partial "carousel.html" (dict "context" . "content" $content "interval" "2000" "gallery" "gallery2") }}
-				</section>
 
 				<div class="max-w-prose mb-20">
 					{{ .Content | emojify }}

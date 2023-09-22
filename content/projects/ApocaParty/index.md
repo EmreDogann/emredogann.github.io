@@ -25,8 +25,6 @@ project:
 ---
 <!-- {{< github repo="emredogann/apocaparty" >}} -->
 
-<!-- {{< buttonImage src="img/Itchio/logos/app-icon.png" href="https://ayperosia.itch.io/apocaparty" target="_blank" >}} -->
-
 <!-- {{< carousel images="images/*" aspectRatio="16-9" >}} -->
 
 ### Overview

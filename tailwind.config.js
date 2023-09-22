@@ -59,6 +59,7 @@ module.exports = {
     extend: {
 		minWidth: {
 			'prose': '65ch',
+			'min-prose': '50ch',
 		  },
       typography: ({ theme }) => ({
         DEFAULT: {

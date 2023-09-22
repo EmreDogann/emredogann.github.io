@@ -1,4 +1,4 @@
-{{ $disableImageOptimization := .Page.Site.Params.disableImageOptimization | default false }}
+{{ $disableImageOptimization := .context.Page.Site.Params.disableImageOptimization | default false }}
 
 {{ $content := .content }}
 {{ if not .content }}
