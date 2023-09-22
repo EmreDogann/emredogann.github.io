@@ -12,3 +12,7 @@
 html.glightbox-open {
 	overflow: initial;
 }
+
+.glightbox-clean .goverlay {
+	background-color: rgba(0, 0, 0, 0.554);
+}
