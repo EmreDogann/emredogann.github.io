@@ -16,3 +16,23 @@ html.glightbox-open {
 .glightbox-clean .goverlay {
 	background-color: rgba(0, 0, 0, 0.554);
 }
+
+.glightbox-clean .gslide-description {
+    background-color: rgba(0, 0, 0, 0.842);
+	border-bottom-left-radius: 0.3rem;
+	border-bottom-right-radius: 0.3rem;
+}
+
+.glightbox-clean .gslide-title {
+    /* font-size: 1em; */
+    font-weight: 700;
+    font-family: unset;
+    color: #FFF;
+	text-align: center;
+    margin-bottom: auto;
+    line-height: 1.4em;
+}
+
+.gslide-image img {
+    border-radius: 0.3rem;
+}
