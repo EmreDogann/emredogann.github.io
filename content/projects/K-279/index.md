@@ -131,13 +131,3 @@ I mitigated both of these issues by using TAA to "soak" up the moiré patterns, 
 	scale=1.5
 	optimize-image=true
 >}}
-
-Below are some additional captures throughout development:
-
-<div id="img-gallery" data-packery='{ "percentPosition": true, "gutter": 10, "resize": true }'>
-  {{< glightbox src="https://media.giphy.com/media/0bqOQs1H8kqngqId4Y/source.gif" class="grid-w50" gallery="extras" title="Playing around with under-grate lighting." >}}
-  {{< glightbox src="https://media.giphy.com/media/MYj2nSJ0Zyt6hvtqR8/source.gif" class="grid-w50" gallery="extras" title="Testing alarm light state." >}}
-  {{< glightbox src="https://media.giphy.com/media/1JMuoRlybmIr6O4szW/source.gif" class="grid-w50" gallery="extras" title="Incorrect depth reconstruction for dither shader." >}}
-  {{< glightbox src="https://media.giphy.com/media/xjqAO6EXiGj6Srt1PV/source.gif" class="grid-w50" gallery="extras" title="Object normal maps working with dither effect." >}}
-  {{< glightbox src="./assets/LevelLayout.png" class="grid-w50" gallery="extras" title="Early level layout before dither effect." >}}
-</div>
