@@ -13,7 +13,7 @@ layout: projectSingle
 itchPage: https://ayperosia.itch.io/apocaparty
 githubPage: https://github.com/EmreDogann/ApocaParty
 
-showcaseRegex: "images/Showcase*.png"	# Regex for images to show on page
+showcaseRegex: "showcase/image*.*"	# Regex for images to show on page
 
 project:
     status: completed			# valid options: completed, ongoing, stopped
@@ -58,7 +58,7 @@ For the guest AI, I took inspiration from [Needs-Based AIs](http://www.zubek.net
 Requests can only be fulfilled by the player completing a set of actions. Instead of hardcoding these actions, I implemented a simple [Action List](https://allenchou.net/2012/07/action-lists-they-are-cooler-than-commands/). These action lists are integrated into the editor via a custom editor script, allowing for designers on the team to create new actions lists on the fly using predetermined building blocks.
 
 {{< figure
-    src="images/ActionList.png"
+    src="assets/ActionList.png"
     alt="Action List for Drink Refills"
     caption="Action List for Drink Refills."
 	scale=0.6
@@ -84,7 +84,7 @@ All the tutorial scripting was done using Unity's timeline system & API. Custom 
 - Text popup with animation and audio.
 
 {{< figure
-    src="images/TutorialTimeline.png"
+    src="assets/TutorialTimeline.png"
     alt="The Unity Timeline for the game's tutorial."
     caption="The tutorial timeline sequence."
 	optimize-image=true

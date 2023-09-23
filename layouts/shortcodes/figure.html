@@ -29,10 +29,11 @@
 				{{ if isset $.Params "scale" }}
 					{{ $scaledWidth := (int (mul .Width ($.Get "scale"))) }}
 					src="{{ (.Resize (print $scaledWidth "x") ).RelPermalink }}"
+					data-zoom-src="{{ (.Resize (print $scaledWidth "x") ).RelPermalink }}"
 				{{ else }}
 					src="{{ .RelPermalink }}"
+					data-zoom-src="{{ .RelPermalink }}"
 				{{ end }}
-				data-zoom-src="{{ .RelPermalink }}"
 				alt="{{ $altText }}"
 			/>
           {{ else }}

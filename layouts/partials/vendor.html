@@ -57,7 +57,7 @@
 {{ end }}
 
 {{/* Packery */}}
-{{ if .Page.HasShortcode "gallery" }}
+{{ if or (.Page.HasShortcode "gallery") (.Page.HasShortcode "glightbox") }}
 	{{ $packeryLib := resources.Get "lib/packery/packery.pkgd.min.js" }}
 	<script defer src="{{ $packeryLib.RelPermalink }}" integrity="{{ $packeryLib.Data.Integrity }}"></script>
 {{ end }}

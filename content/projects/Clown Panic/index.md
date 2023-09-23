@@ -13,7 +13,7 @@ layout: projectSingle
 itchPage: https://aumpatel2208.itch.io/clown-panic
 githubPage: https://github.com/EmreDogann/ClownPanic
 
-showcaseRegex: "images/Showcase*.png"	# Regex for images to show on page
+showcaseRegex: "showcase/image*.*"	# Regex for images to show on page
 
 project:
     status: completed			# valid options: completed, ongoing, stopped
