@@ -54,7 +54,12 @@
 	</div>
   <script>
     {{ if not .Site.Params.disableImageZoom | default true }}
-		const zoom = mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+		const selectors = [
+			...document.querySelectorAll('[data-zoomable]'),
+			...document.querySelectorAll('img:not(.nozoom)'),
+		]
+
+		const zoom = mediumZoom(selectors, {
 			margin: 24,
 			background: 'rgba(0,0,0,0.5)',
 			scrollOffset: 0,
@@ -69,13 +74,18 @@
 		}
 
 		zoom
-		.on('close', ({ target }) => {
+		.on('close', (event) => {
 			if (srcsetAttr === null) {
 				return;
 			}
 
-			target.setAttribute('srcset', srcsetAttr)
-			target.removeAttribute('data-zoom-srcset')
+			{{/*  if (event.target.tagName === "VIDEO") {  */}}
+				{{/*  event.target.currentTime = 0;  */}}
+				{{/*  event.target.play();  */}}
+			{{/*  }  */}}
+
+			event.target.setAttribute('srcset', srcsetAttr)
+			event.target.removeAttribute('data-zoom-srcset')
 		})
 		.on('closed', ({ target }) => {
 			if (srcsetAttr === null) {
@@ -84,9 +94,9 @@
 
 			target.style.removeProperty("min-height");
 		})
-		.on('open', ({ target }) => {
-			if (target.hasAttribute('srcset')) {
-				srcsetAttr = target.getAttribute('srcset');
+		.on('open', (event) => {
+			if (event.target.hasAttribute('srcset')) {
+				srcsetAttr = event.target.getAttribute('srcset');
 				if (srcsetAttr === null) {
 					return;
 				}
@@ -94,10 +104,16 @@
 
 			// `srcset` is being removed because of a small bug
 			// https://github.com/francoischalifour/medium-zoom/issues/92
-			target.style.setProperty("--height", target.clientHeight + "px");
-			target.style.setProperty("min-height", target.clientHeight + "px");
-			target.setAttribute('data-zoom-srcset', srcsetAttr)
-			target.removeAttribute('srcset')
+			event.target.style.setProperty("--height", event.target.clientHeight + "px");
+			event.target.style.setProperty("min-height", event.target.clientHeight + "px");
+			event.target.setAttribute('data-zoom-srcset', srcsetAttr)
+			event.target.removeAttribute('srcset')
+		})
+		.on('openAfter', (event) => {
+			if (event.detail.zoomElement.tagName === "VIDEO") {
+				event.detail.zoomElement.currentTime = event.target.currentTime;
+				event.srcElement.play();
+			}
 		})
     {{ end }}
   </script> {{ $jsProcess := resources.Get "js/process.js" }}

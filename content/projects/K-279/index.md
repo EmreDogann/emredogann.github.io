@@ -59,18 +59,18 @@ Following in his footsteps, I managed to create a close enough approximation, bu
     src="assets/DitherSwimming.gif"
     alt="Dither effect showcasing swimming artifacts."
     caption="First iteration of the dither effect. Showcasing swimming artifacts."
-	scale=1.5
-	optimize-image=true
+	optimize-image=false
 >}}
 
 A lot of the work Lucas Pope put into his dither effect was to counteract rotational dither swimming/artifacts. However, due to the nature of our game, we were only dealing with positional camera movement on the XY plane (with very minimal rotation, reserved for elements like camera shake). With the effect done in screen space, we found that the effect still made it difficult to distinguish details in the environment.
 
-{{< figure
-    src="assets/DitherScreenSpace.gif"
-    alt="Screen-space Dither effect."
-    caption="1-bit dither effect. Using Screen-space."
-	scale=1.5
-	optimize-image=true
+{{< video
+	src="assets/DitherScreenSpace.mp4"
+	caption="1-bit dither effect. Using Screen-space."
+	muted="true"
+	autoplay="true"
+	loop="true"
+	controls="false"
 >}}
 
 Looking back at some of my past projects, I realized we could circumvent the swimming altogether in this project by projecting the dither pattern to world space using Tri-planar mapping.
@@ -109,12 +109,13 @@ float3 worldPos = ComputeWorldSpacePosition(UV, depth, UNITY_MATRIX_I_VP);
 
 With both these values, we can now perform tri-planar mapping like normal {{< superSmall "(pun intended)" >}}. In the end, we end up with the effect below:
 
-{{< figure
-    src="assets/DitherWorldSpace.gif"
-    alt="World-space Dither effect."
-    caption="1-bit dither effect. Using Tri-planar projection."
-	scale=1.5
-	optimize-image=true
+{{< video
+	src="assets/DitherWorldSpace.mp4"
+	caption="1-bit dither effect. Using Tri-planar projection."
+	muted="true"
+	autoplay="true"
+	loop="true"
+	controls="false"
 >}}
 
 While this effect worked great for our purposes, there are some issues as can be seen in the animations above:
@@ -124,12 +125,13 @@ While this effect worked great for our purposes, there are some issues as can be
 
 I mitigated both of these issues by using TAA to "soak" up the moiré patterns, pixel aliasing, and half-pixel problems. TAA also had the added benefit of adding a "graininess" to the image with how it plays with the dithering effect, which suits the game's aesthetic. While not a silver bullet to the listed problems, I am overall very pleased with the final result:
 
-{{< figure
-    src="assets/DitherFinal.gif"
-    alt="Final Dither effect."
-    caption="Final 1-bit dither effect."
-	scale=1.5
-	optimize-image=true
+{{< video
+	src="assets/DitherFinal.mp4"
+	caption="Final 1-bit dither effect."
+	muted="true"
+	autoplay="true"
+	loop="true"
+	controls="false"
 >}}
 
 Below are some additional captures throughout development:

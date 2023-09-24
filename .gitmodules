@@ -5,3 +5,6 @@
 [submodule "themes/plugin-glightbox"]
 	path = themes/plugin-glightbox
 	url = https://github.com/EmreDogann/plugin-glightbox
+[submodule "themes/hugo-video"]
+	path = themes/hugo-video
+	url = https://github.com/EmreDogann/hugo-video
