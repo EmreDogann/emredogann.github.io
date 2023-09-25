@@ -263,7 +263,9 @@
           active.zoomed.removeEventListener("transitionend", _handleOpenEnd);
           active.original.dispatchEvent(createCustomEvent("medium-zoom:opened", {
             detail: {
-              zoom: zoom
+              zoom: zoom,
+			  zoomElement: active.zoomed,
+			  zoomElementHd: active.zoomedHd
             }
           }));
           resolve(zoom);
@@ -374,8 +376,10 @@
           active.original.dispatchEvent(createCustomEvent("medium-zoom:closed", {
             detail: {
               zoom: zoom
-            }
-          }));
+     
+      }
+   
+      }));
           active.original = null;
           active.zoomed = null;
           active.zoomedHd = null;
