@@ -47,14 +47,15 @@
 					{{ (.Resize (print (int (mul 1024 $scale)) "x")).RelPermalink }} 1024w,
 					{{ (.Resize (print (int (mul 1320 $scale)) "x")).RelPermalink }} 2x"
 					src="{{ (.Resize (print (int (mul 660 $scale)) "x")).RelPermalink }}"
+					data-zoom-src="{{ (.Resize (print (int (mul .Width $scale)) "x")).RelPermalink }}"
 				{{ else }}
 					{{ (.Resize "330x").RelPermalink }} 330w,
 					{{ (.Resize "660x").RelPermalink }} 660w,
 					{{ (.Resize "1024x").RelPermalink }} 1024w,
 					{{ (.Resize "1320x").RelPermalink }} 2x"
 					src="{{ (.Resize "660x").RelPermalink }}"
+					data-zoom-src="{{ .RelPermalink }}"
 				{{ end }}
-				data-zoom-src="{{ .RelPermalink }}"
 				alt="{{ $altText }}"
 			/>
           {{ end }}

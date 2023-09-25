@@ -18,7 +18,7 @@
 				{{ if eq (printf "%T" (.Param $frontMatterParam)) "[]interface {}" }}
 					{{ range .Param $frontMatterParam }}
 						<div class="flex flex-col items-center">
-							<span class="iconFull w-6 h-6 mt-[8px] text-primary-200 dark:text-primary-200">
+							<span class="iconFull w-auto h-6 mt-[8px] text-primary-200 dark:text-primary-200">
 								{{ partial "icon.html" (( replaceRE "(\\s)" "" . ) | lower) }}
 							</span>
 							{{ . | markdownify | emojify }}

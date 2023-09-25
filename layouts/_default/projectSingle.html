@@ -8,7 +8,7 @@
 	{{ $resizedContent := slice }}
 	{{ if not $disableImageOptimization }}
 		{{ range $image := $content }}
-			{{ $resizedContent = $resizedContent | append ($image.Resize "1920x1080") }}
+			{{ $resizedContent = $resizedContent | append ($image) }}
 		{{ end }}
 
 		{{ $content = $resizedContent }}

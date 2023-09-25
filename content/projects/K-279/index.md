@@ -55,13 +55,6 @@ I spent some time researching how other games with similar 1-bit restrictions ov
 
 Following in his footsteps, I managed to create a close enough approximation, but quickly ran into swimming artifacts as I was unable to fully recreate the spherical projection mapping he employed for RotOD.
 
-<!-- {{< figure
-    src="assets/DitherSwimming.gif"
-    alt="Dither effect showcasing swimming artifacts."
-    caption="First iteration of the dither effect. Showcasing swimming artifacts."
-	optimize-image=false
->}} -->
-
 {{< video
 	src="assets/DitherSwimming.mp4"
 	caption="Dither effect showcasing swimming artifacts."
