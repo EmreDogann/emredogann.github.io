@@ -9,20 +9,29 @@
 {{ end }}
 
 {{ with $context }}
+	{{ $is_array := (eq (printf "%T" (.Param $frontMatterParam)) "[]interface {}") }}
 	<div class="flex flex-col flex-wrap items-start">
 		<span class="font-extrabold text-primary-400 align-text-top"> {{ $title | title }} </span>
-		<span class="prose dark:prose-invert">
-			{{ with i18n (print $frontMatterParam "." (.Param $frontMatterParam) ) }}
-				{{ . | markdownify | emojify }}
-			{{ else }}
-				{{ if eq (printf "%T" (.Param $frontMatterParam)) "[]interface {}" }}
-					{{ range .Param $frontMatterParam }}
-						<div class="flex flex-row justify-start">
+		<span class="prose dark:prose-invert flex {{ if $is_array }}flex-col{{ else }}flex-row{{ end }}">
+			{{ if $is_array }}
+				{{ range .Param $frontMatterParam }}
+					<div class="flex flex-row justify-start">
+						{{ with i18n (print $frontMatterParam "." . ) }}
 							{{ . | markdownify | emojify }}
-						</div>
-					{{ end }}
-				{{ else }}
-					{{ .Param $frontMatterParam | markdownify | emojify }}
+						{{ else }}
+							{{ . | markdownify | emojify }}
+						{{ end }}
+					</div>
+				{{ end }}
+			{{ else }}
+				{{ with .Param $frontMatterParam }}
+					<div class="flex flex-row justify-start">
+						{{ with i18n (print $frontMatterParam "." . ) }}
+							{{ . | markdownify | emojify }}
+						{{ else }}
+							{{ . | markdownify | emojify }}
+						{{ end }}
+					</div>
 				{{ end }}
 			{{ end }}
 		</span>

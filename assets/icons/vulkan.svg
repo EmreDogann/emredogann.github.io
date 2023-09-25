@@ -1,5 +1,5 @@
-<svg id="vlpa" version="1.1" viewBox="0 0 1113 297" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-	<g transform="matrix(.997 0 0 1 -98.6 -92)">
+<svg id="vlpa" version="1.1" viewBox="0 -75 1100 400" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<g transform="matrix(.997 0 0 1 -98.6 -92)">
 		<path d="m724 385h-40.6v-130c13 7.22 30.1 20.5 40.6 33.3z" fill="#ac162c"/>
 		<g fill="#ac162c">
 			<path d="m382 385h-50.6l-66-204h46l45.4 143h0.57l46-143h46.3z"/>

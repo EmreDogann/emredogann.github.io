@@ -78,6 +78,6 @@ project:
         ongoing: 'Ongoing'
         stopped: 'Stopped'
     type:
-        university: 'University Project'
-        personal: 'Personal Project'
+        university: 'University'
+        personal: 'Personal'
         gamejam: 'Game Jam'
