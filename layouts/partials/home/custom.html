@@ -19,7 +19,7 @@
 								data-pattern-scale="0.25"
 								data-pattern-fade
 								data-pattern-fade-start="0.39"
-								class="fixed svgFull bottom-0 left-0 right-0 z-10 text-primary-900 opacity-0 transition-opacity duration-[1500ms]"
+								class="fixed svgFull bottom-0 left-0 right-0 z-10 text-primary-900 text-opacity-75 opacity-0 transition-opacity duration-[1500ms]"
 								style="height: 100vh">
 								{{ $backgroundSVG.Content | safeHTML }}
 							</span>
@@ -94,10 +94,10 @@
 <section>
 	{{ partial "recent-articles/recentMain.html" . }}
 </section>
-<div
-	id="background-blur"
-	class="fixed opacity-60 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl"></div>
 {{ if .Site.Params.homepage.layoutBackgroundBlur | default false }}
+	<div
+		id="background-blur"
+		class="fixed opacity-60 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl"></div>
 	<script>
 		window.addEventListener('scroll', function (e) {
 			var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;

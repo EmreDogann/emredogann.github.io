@@ -55,11 +55,20 @@ I spent some time researching how other games with similar 1-bit restrictions ov
 
 Following in his footsteps, I managed to create a close enough approximation, but quickly ran into swimming artifacts as I was unable to fully recreate the spherical projection mapping he employed for RotOD.
 
-{{< figure
+<!-- {{< figure
     src="assets/DitherSwimming.gif"
     alt="Dither effect showcasing swimming artifacts."
     caption="First iteration of the dither effect. Showcasing swimming artifacts."
 	optimize-image=false
+>}} -->
+
+{{< video
+	src="assets/DitherSwimming.mp4"
+	caption="Dither effect showcasing swimming artifacts."
+	muted="true"
+	autoplay="true"
+	loop="true"
+	controls="false"
 >}}
 
 A lot of the work Lucas Pope put into his dither effect was to counteract rotational dither swimming/artifacts. However, due to the nature of our game, we were only dealing with positional camera movement on the XY plane (with very minimal rotation, reserved for elements like camera shake). With the effect done in screen space, we found that the effect still made it difficult to distinguish details in the environment.

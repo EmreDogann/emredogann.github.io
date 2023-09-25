@@ -79,11 +79,6 @@
 				return;
 			}
 
-			{{/*  if (event.target.tagName === "VIDEO") {  */}}
-				{{/*  event.target.currentTime = 0;  */}}
-				{{/*  event.target.play();  */}}
-			{{/*  }  */}}
-
 			event.target.setAttribute('srcset', srcsetAttr)
 			event.target.removeAttribute('data-zoom-srcset')
 		})
@@ -110,9 +105,14 @@
 			event.target.removeAttribute('srcset')
 		})
 		.on('openAfter', (event) => {
-			if (event.detail.zoomElement.tagName === "VIDEO") {
+			if (event.target.tagName === "VIDEO") {
+				event.detail.zoomElement.style.visibility = "hidden";
 				event.detail.zoomElement.currentTime = event.target.currentTime;
-				event.srcElement.play();
+			}
+		})
+		.on('opened', (event) => {
+			if (event.target.tagName === "VIDEO") {
+				event.detail.zoomElement.style.visibility = "visible";
 			}
 		})
     {{ end }}

@@ -57,6 +57,9 @@ showMoreLinkDest = "/projects"
 cardView = true
 cardViewScreenWidth = false
 
+[article]
+layoutBackgroundBlur = true # only used when heroStyle equals background or thumbAndBackground
+
 [articlePosts]
 showDate = true
 showViews = false
@@ -65,7 +68,7 @@ showDateUpdated = true
 showAuthor = false
 showHero = false
 # heroStyle = "basic"                # valid options: basic, big, background, thumbAndBackground
-layoutBackgroundBlur = true        # only used when heroStyle equals background or thumbAndBackground
+# layoutBackgroundBlur = true        # only used when heroStyle equals background or thumbAndBackground
 layoutBackgroundHeaderSpace = true # only used when heroStyle equals background
 showBreadcrumbs = false
 showDraftLabel = true
@@ -93,8 +96,8 @@ showLikes = false
 showDateUpdated = false
 showAuthor = false
 showHero = true
-heroStyle = "background"           # valid options: basic, big, background, thumbAndBackground
-layoutBackgroundBlur = true        # only used when heroStyle equals background or thumbAndBackground
+heroStyle = "background" # valid options: basic, big, background, thumbAndBackground
+# layoutBackgroundBlur = true        # only used when heroStyle equals background or thumbAndBackground
 layoutBackgroundHeaderSpace = true # only used when heroStyle equals background
 showBreadcrumbs = false
 showDraftLabel = true

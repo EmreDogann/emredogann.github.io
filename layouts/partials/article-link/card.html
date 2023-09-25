@@ -6,7 +6,7 @@
 <a href="{{ .RelPermalink }}" class="min-w-full dark:hover:border-primary-500 transition duration-150 ease-in-out">
 {{ end }}
 	<div
-		class="group min-h-full border border-neutral-200 dark:border-neutral-700 dark:hover:border-primary-500 transition duration-150 ease-in-out border-2 rounded overflow-hidden shadow-2xl relative backdrop-blur">
+		class="group min-h-full border border-neutral-200 dark:border-neutral-700 dark:hover:border-primary-500 transition duration-150 ease-in-out border-2 rounded overflow-hidden shadow-2xl relative backdrop-blur-sm">
 		{{- with $.Params.images -}}
 			{{- range first 6 . }}
 				<meta property="og:image" content="{{ . | absURL }}" />
