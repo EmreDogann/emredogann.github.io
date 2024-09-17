@@ -9,9 +9,6 @@
 	<h2 class="mt-8 text-3xl font-extrabold mb-10">
 		{{ .Title }}
 	</h2>
-	<h3 class="mt-8 text-3xl font-extrabold mb-10">
-		{{ .Title }}
-	</h3>
 
 	{{ if and .Settings.cardView (not .Settings.cardViewScreenWidth) | default false }}
 		{{ partial "projects/cardview.html" (dict "Context" .Context "Settings" .Settings) }}
