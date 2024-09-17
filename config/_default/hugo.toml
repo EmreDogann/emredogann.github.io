@@ -3,11 +3,12 @@
 # Refer to the theme docs for more details about each of these parameters.
 # https://blowfish.page/docs/getting-started/
 
-theme = ["hugo-video", 'blowfish', 'plugin-glightbox']
+theme = ['hugo-video', 'blowfish', 'plugin-glightbox']
 baseURL = "https://emredogan.co.uk/"
 defaultContentLanguage = "en"
 
 # pluralizeListTitles = "true" # hugo function useful for non-english languages, find out more in  https://gohugo.io/getting-started/configuration/#pluralizelisttitles
+capitalizeListTitles = false
 
 enableRobotsTXT = true
 summaryLength = 0

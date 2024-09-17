@@ -1,6 +1,10 @@
 {{ $meta := newScratch }}
 
 {{/* Gather partials for this context */}}
+{{ if .Param "project.company" | default false }}
+	{{ $meta.Add "partials" (slice (partial "project-meta/info.html" (dict "context" . "title" "Company" "param" "company"))) }}
+{{ end }}
+
 {{ if .Param "project.status" | default false }}
 	{{ $meta.Add "partials" (slice (partial "project-meta/info.html" (dict "context" . "title" "Status" "param" "status"))) }}
 {{ end }}

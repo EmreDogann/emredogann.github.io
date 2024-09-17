@@ -1,6 +1,5 @@
-{{ $icon := resources.GetMatch (print "icons/*" . "*.svg") }}
-{{ if $icon }}
+{{ with resources.GetMatch (print "icons/*" . "*.svg") }}
 	<span class="relative icon">
-		{{ $icon.Content | safeHTML }}
+		{{ .Content | safeHTML }}
 	</span>
 {{ end }}
