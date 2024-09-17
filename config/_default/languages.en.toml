@@ -13,7 +13,7 @@ dateFormat = "2 January 2006"
 # copyright = "Copy, _right?_ :thinking_face:"
 
 
-[author]
+[params.author]
 name = "Emre Dogan"
 image = "img/profile.jpg"
 headline = "Game Developer"

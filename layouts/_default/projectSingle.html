@@ -27,7 +27,7 @@
 			{{ end }}
 		{{ end }}
 
-
+ 
 		<div class="flex flex-row">
 			<header id="single_header" class="flex flex-col grow mt-5 max-w-prose">
 				{{ if .Params.showBreadcrumbs | default (.Site.Params.articleProjects.showBreadcrumbs | default false) }}
@@ -139,7 +139,7 @@
 					{{ end }}
 				</div>
 
-				{{ partial "series.html" . }}
+				{{ partial "series/series.html" . }}
 
 				{{ if isset .Params "showcaseregex" }}
 					<section class="mt-10 block lg:hidden">
@@ -152,7 +152,7 @@
 					{{ .Content | emojify }}
 				</div>
 
-				{{ partial "series-closed.html" . }}
+				{{ partial "series/series-closed.html" . }}
 				{{ partial "sharing-links.html" . }}
 				{{ partial "related.html" . }}
 			</div>

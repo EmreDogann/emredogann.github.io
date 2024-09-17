@@ -34,7 +34,7 @@
 				</div>
 				<div
 					class="relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8 flex flex-col items-center justify-center text-center">
-					{{ with .Site.Author.image }}
+					{{ with .Site.Params.Author.image }}
 						{{ $authorImage := resources.Get . }}
 						{{ if $authorImage }}
 							{{ $authorImage := $authorImage.Fill "288x288" }}
@@ -42,20 +42,20 @@
 								class="mb-2 rounded-full h-36 w-36 nozoom"
 								width="144"
 								height="144"
-								alt="{{ $.Site.Author.name | default " Author" }}"
+								alt="{{ $.Site.Params.Author.name | default " Author" }}"
 								src="{{ $authorImage.RelPermalink }}" />
 						{{ end }}
 					{{ end }}
 					<h1 class="mb-2 text-4xl font-extrabold text-neutral-800 dark:text-neutral-200">
-						{{ .Site.Author.name | default .Site.Title }}
+						{{ .Site.Params.Author.name | default .Site.Title }}
 					</h1>
-					{{ with .Site.Author.headline }}
+					{{ with .Site.Params.Author.headline }}
 						<h2 class="mt-0 mb-0 text-xl text-primary-500 dark:text-primary-400">
 							{{ . | markdownify | emojify }}
 						</h2>
 					{{ end }}
 					<div class="mt-1 mb-10 text-2xl">
-						{{ with .Site.Author.links }}
+						{{ with .Site.Params.Author.links }}
 							<div class="flex flex-wrap">
 								{{ range $links := . }}
 									{{ range $name, $url := $links }}
