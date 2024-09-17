@@ -48,12 +48,21 @@ showMoreLinkDest = "/posts"
 cardView = false
 cardViewScreenWidth = false
 
-[homepageProjects]
-mainSections = ["projects"]
+[homepageProjects.Personal]
+mainSections = ["projects/personal"]
 show = true
 showItems = 10
 showMoreLink = true
-showMoreLinkDest = "/projects"
+showMoreLinkDest = "/projects/personal"
+cardView = true
+cardViewScreenWidth = false
+
+[homepageProjects.Professional]
+mainSections = ["projects/professional"]
+show = true
+showItems = 10
+showMoreLink = true
+showMoreLinkDest = "/projects/professional"
 cardView = true
 cardViewScreenWidth = false
 

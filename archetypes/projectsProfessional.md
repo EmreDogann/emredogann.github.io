@@ -1,6 +1,7 @@
 ---
 # Project Info
 title: "{{ replace .Name "-" " " | title }}"
+type: "projects/professional"
 summary: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
 

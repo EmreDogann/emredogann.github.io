@@ -1,5 +1,6 @@
 ---
 title: "ApocaParty"
+type: "projects/personal"
 date: 2023-09-15T02:28:44+01:00
 summary: "Chaotic party planner game <br>**Summer Slow Jams 2023: Narrative**"
 cascade:

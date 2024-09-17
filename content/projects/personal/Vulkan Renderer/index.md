@@ -1,5 +1,6 @@
 ---
 title: "Vulkan Renderer"
+type: "projects/personal"
 date: 2023-09-15T02:28:44+01:00
 summary: "Hybrid graphics renderer made using Vulkan & C++"
 cascade:
@@ -28,7 +29,7 @@ project:
 
 ### Overview
 
-For my final university project, I decided to create a simple Vulkan renderer from scratch using C++. This was coming off of the OpenGL work I had done in [Space Rider]({{< ref "/projects/Space Rider" >}}) for my Computer Graphics university module.
+For my final university project, I decided to create a simple Vulkan renderer from scratch using C++. This was coming off of the OpenGL work I had done in [Space Rider]({{< ref "/projects/personal/Space Rider" >}}) for my Computer Graphics university module.
 
 ### Features
 

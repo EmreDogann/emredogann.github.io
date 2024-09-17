@@ -89,7 +89,20 @@
 	</div>
 </article>
 <section>
-	{{ partial "projects/projectsMain.html" . }}
+	{{ partial "projects/projectsMain.html" (
+		dict "Context" .
+		"Settings" .Site.Params.homepageProjects.Professional
+		"Title" (i18n "shortcode.projects_professional" | markdownify | emojify)
+		"MoreTitle" (i18n "project.show_more_professional" | markdownify | emojify)
+	) }}
+</section>
+<section>
+	{{ partial "projects/projectsMain.html" (
+		dict "Context" .
+		"Settings" .Site.Params.homepageProjects.Personal
+		"Title" (i18n "shortcode.projects_personal" | markdownify | emojify)
+		"MoreTitle" (i18n "project.show_more_personal" | markdownify | emojify)
+	) }}
 </section>
 <section>
 	{{ partial "recent-articles/recentMain.html" . }}

@@ -66,13 +66,15 @@ sharing:
 
 shortcode:
     recent_articles: 'Recent Posts'
-    projects: 'Projects'
+    projects_personal: 'Personal Projects'
+    projects_professional: 'Professional Projects'
 
 recent:
     show_more: 'All Posts'
 
 project:
-    show_more: 'All Projects'
+    show_more_personal: 'All Personal Projects'
+    show_more_professional: 'All Professional Projects'
     status:
         completed: 'Completed'
         ongoing: 'Ongoing'

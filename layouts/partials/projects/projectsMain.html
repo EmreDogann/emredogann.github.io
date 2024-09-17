@@ -1,32 +1,32 @@
 {{/* Default Values */}}
 {{ $projectCount := 5 }}
-{{ $showMoreLinkDest := "/projects" }}
+{{ $showMoreLinkDest := "/projects/personal" }}
 
-{{ if .Site.Params.homepageProjects.show | default false }}
-	{{ if index .Site.Params.homepageProjects "showItems" }}
-		{{ $projectCount = .Site.Params.homepageProjects.showItems }}
+{{ if .Settings.show | default false }}
+	{{ if index .Settings "showItems" }}
+		{{ $projectCount = .Settings.showItems }}
 	{{ end }}
 	<h2 class="mt-8 text-2xl font-extrabold mb-10">
-		{{ i18n "shortcode.projects" | emojify }}
+		{{ .Title }}
 	</h2>
 
-	{{ if and .Site.Params.homepageProjects.cardView (not .Site.Params.homepageProjects.cardViewScreenWidth) | default false }}
-		{{ partial "projects/cardview.html" . }}
-	{{ else if and .Site.Params.homepageProjects.cardView .Site.Params.homepageProjects.cardViewScreenWidth | default false }}
+	{{ if and .Settings.cardView (not .Settings.cardViewScreenWidth) | default false }}
+		{{ partial "projects/cardview.html" (dict "Context" .Context "Settings" .Settings) }}
+	{{ else if and .Settings.cardView .Settings.cardViewScreenWidth | default false }}
 		{{ partial "projects/cardview-fullwidth.html" . }}
 	{{ else }}
 		{{ partial "projects/list.html" . }}
 	{{ end }}
-	{{ if gt (where .Site.RegularPages "Type" "in" .Site.Params.homepageProjects.mainSections) 0 }}
-		{{ if .Site.Params.homepageProjects.showMoreLink | default false }}
-			{{ if index .Site.Params.homepageProjects "showItems" }}
-				{{ $showMoreLinkDest = .Site.Params.homepageProjects.showMoreLinkDest }}
+	{{ if gt (where .Context.Site.RegularPages "Type" "in" .Settings.mainSections) 0 }}
+		{{ if .Settings.showMoreLink | default false }}
+			{{ if index .Settings "showItems" }}
+				{{ $showMoreLinkDest = .Settings.showMoreLinkDest }}
 			{{ end }}
 			<div class="mt-10 flex justify-center">
 				<a href="{{ $showMoreLinkDest }}">
 					<button
 						class="bg-transparent hover:bg-primary-900 hover:text-primary-300 prose dark:prose-invert font-semibold hover:text-white py-2 px-4 border border-primary-500 rounded">
-						{{ i18n "project.show_more" | markdownify | emojify }}
+						{{ .MoreTitle }}
 					</button>
 				</a>
 			</div>

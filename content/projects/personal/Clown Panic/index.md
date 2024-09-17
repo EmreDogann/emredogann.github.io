@@ -1,5 +1,6 @@
 ---
 title: "Clown Panic"
+type: "projects/personal"
 date: 2023-09-22T03:34:42+01:00
 summary: "Puzzle Horror game <br>**Go Godot 3 Game Jam**"
 cascade:

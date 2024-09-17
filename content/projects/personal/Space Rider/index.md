@@ -1,5 +1,6 @@
 ---
 title: "Space Rider"
+type: "projects/personal"
 date: 2023-09-22T03:36:54+01:00
 summary: "A short on-rails driving game used to explore graphics concepts."
 cascade:
