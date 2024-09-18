@@ -29,7 +29,7 @@ project:
 
 ### Overview
 
-For my final university project, I decided to create a simple Vulkan renderer from scratch using C++. This was coming off of the OpenGL work I had done in [Space Rider]({{< ref "/projects/personal/Space Rider" >}}) for my Computer Graphics university module.
+For my final university project, I decided to create a simple Vulkan renderer from scratch using C++. This was coming off of the OpenGL work I had done in [Space Rider]({{< relref "Space Rider" >}}) for my Computer Graphics university module.
 
 ### Features
 
