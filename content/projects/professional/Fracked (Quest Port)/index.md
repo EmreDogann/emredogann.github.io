@@ -16,39 +16,39 @@ showcaseRegex: "showcase/image*.*"	# Regex for images to show on page
 
 project:
     company: [nDreams]
-    software: ["Unreal Engine 4", "Render Doc"]
+    software: ["Unreal Engine 4", "Unreal Insights", "Render Doc"]
     languages: ["C++"]
     role: ["Graphics Programmer"]
 ---
 
-<!-- {{< carousel images="images/*" aspectRatio="16-9" >}} -->
+The port of Fracked to Quest 2/3 was a very ambitious one primarily due to the small team size (5 people at its largest) and the fact that the game was designed first and foremost for PS4.
 
-### Overview
+My responsibilities morphed as the project progressed. Below is a list of responsibilities split into the different phases of the project.
 
-I joined nDreams just after the release of **Ghostbusters: Rise of The Ghost Lord**. I remained on the project to work on the additional updates/DLC packs for the game including:
-- Heist and Seek Update
-- Infestation Update
-- Slimer Hunt DLC
-- Frozen Empire DLC
+#### Pre-production:
+- Identify the main areas of optimization work that would be required. What graphical features could be brought over and what features would need to be cut.
+- Initial performance profiling pass on Quest 2 to identify the worst-case views and areas.
+- Write-up of my findings from the pre-production investigation to hand off to the production team.
 
-Coming from a Unity background I spent some time getting to grips with Unreal Engine 4 and familiarizing myself with the rendering backend. I was responsible for:
-- PSO Caching for each update to ensure a first-time hitch free experience for players.
-- Implementing UI to effectively communicate PSO pre-compilation to the user.
-- Profiling to identify performance hotspots/hitches within levels.
-- Various gameplay bug fixes and crash fixes.
+#### Production:
+- Disable graphical features which would not be feasible on a mobile platform like Quest 2 (volumetric effects, heavy full screen FX like bloom, sobel outlines, sun flares etc.)
+- Port of some effects to mobile friendly Vulkan subpasses (color grading, tonemapping, tinting, fade to black, etc.)
+- Optimization of master materials; baking material effects to textures where possible.
+- Optimization and cleanup of geometry.
+- Frequent performance profiling.
+- Various gameplay bug & crash fixes.
+- PSO caching & Shader Compiling UI screen implementation.
 
-## PSO
-Before every update including content additions or changes, I was tasked with playing through the game to accumulate a PSO cache that could be shipped to players.
+## Pre-Production
+I was brought onto the project at the start in order to help identify the bulk of the optimization work that would be required along with the people needed for said work.
 
-An **automatic PSO caching map** was created to help speed up the process of PSO caching by rendering every **vfx, mesh material + mesh permutation** in the asset database. But, there were still missed PSOs that needed to be collected by manually playing through the game. In addition to this, later in development of the post-launch content, Quest 3 support was added to the game. As part of this, several graphical enhancements were made to the Quest 3 version, thereby requiring **two separate PSO caches** (one for Quest 2 & one for Quest 3).
+In the initial discussions it was expressed that the port would target **72 fps native** (with dynamic resolution) on Quest 2.
 
-As the game grew with subsequent DLCs/updates, the number of PSO permutations that needed to be captured exploded in size. Therefore I was given the responsibility of guiding a small group to assist me in the manual PSO caching process. With this group plus the automatic PSO caching map, the game was able to achieve a **smooth 90 fps with minimal hitching** (using Application Space Warp).
+I began with an initial performance profiling pass using **OVR Metrics** plus **Unreal Insights** and quickly identified that the game's rendering pipeline was bottlenecked from very high draw calls (in the 1000+ draw call range). Meta's official [documentation](https://developers.meta.com/horizon/documentation/unity/unity-perf/#draw-calls-on-meta-quest) suggests a 200-300 draw call range for Quest 2 for a medium simulation. With the help of **Precomputed Visibility**, **Hierarchical LODS** and **Cull Distance Volumes** we were able to reduce this number down to 400-700 draw calls (any further reduction was difficult to achieve due to the level design and lack of an environment artist to fully optimize geometry).
 
-## UI
-Due to the large number of PSO permutations, the final PSO cache was fairly large. We were receiving reports from players of long initial load times after every update. My solution for this was to create a "Shader Compiling" screen which would communicate to the player the progress remaining on the PSO pre-compilation. Along with this, I **temporarily boosted CPU clock speeds** during this compilation period.
+With this, OVR Metrics still showed **high GPU App Time** with **high GPU usage**, indicating that the application was **GPU limited**. To further diagnose this I took several **Render Doc** captures from a few of the most expensive views in the game. The general capture statistics (draw calls, GPU render time) were recorded in a spreadsheet along with performance counters from the most expensive draw calls (instruction counts, texture reads, wave occupancy, etc.) to indicate what the most expensive materials/objects were in the scene.
 
-## Profiling
-Another part of my responsibilities was to crawl through the game to find potential performance issues that could lead to motion sickness for the player. I did this mainly using **Unreal Insights**. Render Doc was not used as much due to the majority of the performance issues with the game residing in the CPU domain.
+My findings from this profiling pass was collated into a document that was used to help identify the resources that would be required to complete this port.
 
-## Crash/Bug Fixes
-When I had run out of graphics related tasks to do, I took the initiative and helped the gameplay team with bug fixes and crashes that were either already documented on our Jira space, or more obscure ones caught by our [Sentry](https://sentry.io/welcome/) instance running on live builds.
+## Production
+After the team was formed from the findings of the pre-production, we began work on the bulk of the optimization. The most obvious place to start was disabling features that we knew would not be possible to replicate on Quest 2 at the 72fps native target such as volumetric effects, sun flares, bloom, full screen sobel outline filters, and other full screen post processing effects.

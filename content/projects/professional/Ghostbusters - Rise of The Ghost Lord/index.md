@@ -20,16 +20,16 @@ project:
     role: ["Graphics Programmer"]
 ---
 
-### Overview
+## Overview
 
-I joined nDreams just after the release of **Ghostbusters: Rise of The Ghost Lord**. I remained on the project to work on the additional updates for the game including:
+I joined nDreams just after the release of **Ghostbusters: Rise of The Ghost Lord** working on the additional post-launch updates for the game including:
 - Heist and Seek
 - Infestation
 - Slimer Hunt
 - Frozen Empire
 
 Coming from a Unity background I spent some time getting to grips with Unreal Engine 4 and familiarizing myself with the rendering backend. I was responsible for:
-- PSO Caching for each update to ensure a first-time hitch free experience for players.
+- PSO Caching for each update to ensure a first-time hitch-free experience for players.
 - Implementing UI to effectively communicate PSO pre-compilation to the user.
 - Profiling to identify performance hotspots/hitches within levels.
 - Various gameplay bug and crash fixes.
