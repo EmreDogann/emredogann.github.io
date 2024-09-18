@@ -15,31 +15,29 @@ showcaseRegex: "showcase/image*.*"	# Regex for images to show on page
 
 project:
     company: [nDreams]
-    software: ["Unreal Engine 4", "Render Doc"]
+    software: ["Unreal Engine 4", "Unreal Insights", "Render Doc"]
     languages: ["C++"]
     role: ["Graphics Programmer"]
 ---
 
-<!-- {{< carousel images="images/*" aspectRatio="16-9" >}} -->
-
 ### Overview
 
-I joined nDreams just after the release of **Ghostbusters: Rise of The Ghost Lord**. I remained on the project to work on the additional updates/DLC packs for the game including:
-- Heist and Seek Update
-- Infestation Update
-- Slimer Hunt DLC
-- Frozen Empire DLC
+I joined nDreams just after the release of **Ghostbusters: Rise of The Ghost Lord**. I remained on the project to work on the additional updates for the game including:
+- Heist and Seek
+- Infestation
+- Slimer Hunt
+- Frozen Empire
 
 Coming from a Unity background I spent some time getting to grips with Unreal Engine 4 and familiarizing myself with the rendering backend. I was responsible for:
 - PSO Caching for each update to ensure a first-time hitch free experience for players.
 - Implementing UI to effectively communicate PSO pre-compilation to the user.
 - Profiling to identify performance hotspots/hitches within levels.
-- Various gameplay bug fixes and crash fixes.
+- Various gameplay bug and crash fixes.
 
 ## PSO
 Before every update including content additions or changes, I was tasked with playing through the game to accumulate a PSO cache that could be shipped to players.
 
-An **automatic PSO caching map** was created to help speed up the process of PSO caching by rendering every **vfx, mesh material + mesh permutation** in the asset database. But, there were still missed PSOs that needed to be collected by manually playing through the game. In addition to this, later in development of the post-launch content, Quest 3 support was added to the game. As part of this, several graphical enhancements were made to the Quest 3 version, thereby requiring **two separate PSO caches** (one for Quest 2 & one for Quest 3).
+An **automatic PSO caching map** was created to help speed up the process of PSO caching by rendering every **vfx, mesh material + mesh permutation** in the asset database. But, there were still missed PSOs that needed to be collected by manually playing through the game. Additionally, later in development of the post-launch content, several graphical enhancements were made to the Quest 3 version the game, thereby requiring **two separate PSO caches** (one for Quest 2 & one for Quest 3).
 
 As the game grew with subsequent DLCs/updates, the number of PSO permutations that needed to be captured exploded in size. Therefore I was given the responsibility of guiding a small group to assist me in the manual PSO caching process. With this group plus the automatic PSO caching map, the game was able to achieve a **smooth 90 fps with minimal hitching** (using Application Space Warp).
 
