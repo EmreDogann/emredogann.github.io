@@ -11,13 +11,59 @@
 {{ with $context }}
 	<div class="flex flex-col flex-wrap items-start">
 		<span class="font-extrabold text-primary-400"> {{ $title | title }} </span>
+		<span class="prose dark:prose-invert grid grid-cols-2 auto-rows-auto gap-x-4 gap-y-2 mt-[8px]">
+			{{ with i18n (print $frontMatterParam "." (.Param $frontMatterParam) ) }}
+				{{ . | markdownify | emojify }}
+			{{ else }}
+				{{ if eq (printf "%T" (.Param $frontMatterParam)) "[]interface {}" }}
+					{{ range .Param $frontMatterParam }}
+						<div class="grid grid-rows-2 grid-cols-1 last:odd:col-span-full">
+							<span class="iconFull h-6 justify-self-center self-center text-primary-200 dark:text-primary-200">
+								{{ partial "icon.html" (( replaceRE "(\\s)" "" . ) | lower) }}
+							</span>
+							<span class="text-center">
+								{{ . | markdownify | emojify }}
+							</span>
+						</div>
+					{{ end }}
+				{{ else }}
+					{{ .Param $frontMatterParam | markdownify | emojify }}
+				{{ end }}
+			{{ end }}
+		</span>
+	</div>
+	{{/*  <div class="flex flex-col flex-wrap items-start">
+		<span class="font-extrabold text-primary-400"> {{ $title | title }} </span>
+		<span class="prose dark:prose-invert flex flex-wrap gap-x-4 gap-y-2 flex-grow">
+			{{ with i18n (print $frontMatterParam "." (.Param $frontMatterParam) ) }}
+				{{ . | markdownify | emojify }}
+			{{ else }}
+				{{ if eq (printf "%T" (.Param $frontMatterParam)) "[]interface {}" }}
+					{{ range .Param $frontMatterParam }}
+						<div class="grid grid-rows-2 grid-cols-1">
+							<span class="iconFull h-6 place-self-center justify-self-center self-center text-primary-200 dark:text-primary-200">
+								{{ partial "icon.html" (( replaceRE "(\\s)" "" . ) | lower) }}
+							</span>
+							<span class="text-center">
+								{{ . | markdownify | emojify }}
+							</span>
+						</div>
+					{{ end }}
+				{{ else }}
+					{{ .Param $frontMatterParam | markdownify | emojify }}
+				{{ end }}
+			{{ end }}
+		</span>
+	</div>  */}}
+	{{/*  <div class="flex flex-col flex-wrap items-start">
+		<span class="font-extrabold text-primary-400"> {{ $title | title }} </span>
 		<span class=" prose dark:prose-invert flex flex-row gap-x-4">
 			{{ with i18n (print $frontMatterParam "." (.Param $frontMatterParam) ) }}
 				{{ . | markdownify | emojify }}
 			{{ else }}
 				{{ if eq (printf "%T" (.Param $frontMatterParam)) "[]interface {}" }}
 					{{ range .Param $frontMatterParam }}
-						<div class="flex flex-col items-center text-center">
+						<div class="flex flex-col items-center">
 							<span class="iconFull w-auto h-6 mt-[8px] text-primary-200 dark:text-primary-200">
 								{{ partial "icon.html" (( replaceRE "(\\s)" "" . ) | lower) }}
 							</span>
@@ -29,5 +75,5 @@
 				{{ end }}
 			{{ end }}
 		</span>
-	</div>
+	</div>  */}}
 {{ end }}
