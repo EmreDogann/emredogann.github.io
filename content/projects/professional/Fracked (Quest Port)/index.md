@@ -112,7 +112,7 @@ Given the time constraints of the project and the fact that we were lacking envi
 This solution worked well with only a few small issues such as visible seams at the edges of meshes which were segmented for level streaming purposes. These visible seams were trivial to fix manually.
 
 ### Quest 3 Enhancements
-For the Quest 3 version, we had more GPU headroom to play with, allowing us to increase the shader complexity by rendering **texture normals** along with enabling additional post processing effects such as **tonemapping** and **color grading**. We also were able to maintain a **1.5 render scale** for most of the game.
+For the Quest 3 version, we had more GPU headroom to play with, allowing us to increase the shader complexity by rendering **normal maps** along with enabling additional post processing effects such as **tonemapping** and **color grading**. We also were able to maintain a **1.5 render scale** for most of the game.
 
 The limited time we had meant we were unable to add additional graphical features to push the Quest 3 much further than this.
 
