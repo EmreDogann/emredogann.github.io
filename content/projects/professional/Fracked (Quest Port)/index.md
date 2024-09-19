@@ -55,6 +55,9 @@ With this, OVR Metrics still showed **high GPU App Time** with **high GPU usage*
 My findings from this profiling pass was collated into a document that was used to help identify the resources that would be required to complete this port.
 
 ## Production
+### Memory Usage
+During my profiling the memory usage for the game never peaked above 2.5-2.6 GB which we found from [Ghostbusters: Rise of The Ghost Lord]({{< ref "Ghostbusters - Rise of The Ghost Lord" >}}) is the maximum sweetspot for Quest 2. Therefore we kept things like the texture resolution the same as on the PSVR 1 version.
+
 ### Graphical Effects
 After the team was formed from the findings of the pre-production, we began work on the bulk of the optimization. The most obvious place to start was disabling features that we knew would not be possible to replicate on Quest 2 at the 72fps native target such as volumetric effects, sun flares, bloom, full screen sobel outline filters, and other full screen post processing effects.
 
@@ -92,28 +95,31 @@ With the open nature of the levels, there is a ton of overdraw in the game that 
 **< Show screengrab of overdraw >**
 
 ### Transparency
-Fracked's PSVR 1 version uses a lot of transparency in their battle intuition (enemy/object outlines) system, materials and particle FX.
+Fracked's PSVR 1 version uses a lot of transparency in their battlefield intuition (enemy/object outlines) system, materials and particle FX.
 
 The use of **PCV** in the project to reduce draw calls caused a lot of **visible popping** of large portions of the levels due to transparency (e.g. passing by transparent windows). Our solution was to simply remove as much transparency as possible by replacing them with either **Masked** or **Opaque** effects. This also allowed us to also use more aggressive PCV configurations.
 
 **< Show Windows before and after >**
 
-### Battle Intuition
-**< TODO >**
+### Battlefield Intuition (Outlines)
+Fracked has something known as **Battlefield Intuition** which is a system to outline **enemies**, **enemy footsteps**, and other combat interactables in the environment such as **explosive barrels**. In the original PSVR 1 version, this system was implemented using **custom stencil buffers** which would not be sensible on Quest 2 from a performance standpoint. Instead, we opted for an inferior but much cheaper system of rendering a duplicate of the object by with its vertices pushed out along their normals. The effect is not perfect but works well enough for the instances where it is used in the game.
+
+**< Show outlines before and after >**
 
 ### Geometry Optimization
 Given the time constraints of the project and the fact that we were lacking environment artists in the team, our solution to reduce geometry density was to create a small tool to perform **automatic mesh reduction**. This was done by passing the meshes through **auto LOD generation** and picking the appropriate LOD as the default for that mesh.
 
 This solution worked well with only a few small issues such as visible seams at the edges of meshes which were segmented for level streaming purposes. These visible seams were trivial to fix manually.
 
-### Memory Usage
-During my profiling the memory usage for the game never peaked above 2.5-2.6 GB which we found from [Ghostbusters: Rise of The Ghost Lord]({{< ref "Ghostbusters - Rise of The Ghost Lord" >}}) is the maximum sweetspot for Quest 2. Therefore we kept the texture resolution the same as on the PSVR 1 version.
-
 ### Quest 3 Enhancements
-**< TODO >**
+For the Quest 3 version, we had more GPU headroom to play with, allowing us to increase the shader complexity by rendering **texture normals** along with enabling additional post processing effects such as **tonemapping** and **color grading**. We also were able to maintain a **1.5 render scale** for most of the game.
+
+The limited time we had meant we were unable to add additional graphical features to push the Quest 3 much further than this.
+
+**< Show Quest 2 and Quest 3 comparison shots >**
 
 ### Gameplay Bug & Crash Fixes
-**< TODO >**
+After the majority of the optimization work was done, I helped the rest of the team with gameplay bug and crash fixes that were reported by our QA team and logged in Jira.
 
 ### PSO Caching
 The process of PSO caching was the same as for [Ghostbusters: Rise of The Ghost Lord]({{< ref "Ghostbusters - Rise of The Ghost Lord" >}}). Given that Fracked was a much smaller game with fewer permutations to consider, the PSO caching process went much smoother than for Ghostbusters. The tooling for the PSO cache generation from Ghostbusters was reused for Fracked to speed up the process.
