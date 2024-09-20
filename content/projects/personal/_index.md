@@ -1,5 +1,5 @@
 ---
-description: "A series of posts covering the projects I undertake."
+description: "All of my projects."
 cascade:
     showReadingTime: false
     showWordCount: false
