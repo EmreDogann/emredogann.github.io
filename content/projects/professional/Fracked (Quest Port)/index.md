@@ -8,7 +8,6 @@ cascade:
     showWordCount: false
 tags: ["nDreams", "Graphics", "Unreal Engine", "C++"]
 weight: 50
-draft: true
 
 layout: projectSingle
 
@@ -21,9 +20,7 @@ project:
     role: ["Graphics Programmer"]
 ---
 
-The port of Fracked to Quest 2/3 was a very ambitious one primarily due to the small team size (5 people at its largest) and the fact that the game was designed first and foremost for PS4.
-
-**< Length of project? >**
+The port of Fracked to Quest 2/3 was a very ambitious one primarily due to the small team size (**~10 people at its largest**), the limited timeframe for development (**~3 months**), and the fact that the game was designed first and foremost for **PSVR 1**.
 
 My responsibilities morphed as the project progressed. Below is a list of responsibilities split into the different phases of the project.
 
@@ -92,31 +89,87 @@ With the open nature of the levels, there is a ton of overdraw in the game that 
 - Simplifying UE4's **base pass opaque pixel shader** as much as possible
 - Reducing the use of transparency
 
-**< Show screengrab of overdraw >**
+{{< figure
+    src="assets/PixelOverdraw.png"
+    alt="Pixel Overdraw from the beginning of The Labs level."
+    caption="Pixel Overdraw from the beginning of The Labs level."
+	scale=1
+	optimize-image=true
+>}}
 
 ### Transparency
 Fracked's PSVR 1 version uses a lot of transparency in their battlefield intuition (enemy/object outlines) system, materials and particle FX.
 
 The use of **PCV** in the project to reduce draw calls caused a lot of **visible popping** of large portions of the levels due to transparency (e.g. passing by transparent windows). Our solution was to simply remove as much transparency as possible by replacing them with either **Masked** or **Opaque** effects. This also allowed us to also use more aggressive PCV configurations.
 
-**< Show Windows before and after >**
+{{< figure
+    src="assets/TransparencyOverdraw.png"
+    alt="A view from The Labs level showcasing overdraw from the transparent planes in the level."
+    caption="A view from The Labs level showcasing overdraw from the transparent planes in the level."
+	scale=1
+	optimize-image=true
+>}}
+
+{{< figure
+    src="assets/WindowTransparencyBefore.png"
+    alt="Windows set as Transparent on PSVR 1."
+    caption="Windows set as Transparent on PSVR 1."
+	scale=1
+	optimize-image=true
+>}}
+
+{{< figure
+    src="assets/WindowTransparencyAfter.png"
+    alt="Windows set as Masked on Quest."
+    caption="Windows set as Masked on Quest."
+	scale=1
+	optimize-image=true
+>}}
 
 ### Battlefield Intuition (Outlines)
 Fracked has something known as **Battlefield Intuition** which is a system to outline **enemies**, **enemy footsteps**, and other combat interactables in the environment such as **explosive barrels**. In the original PSVR 1 version, this system was implemented using **custom stencil buffers** which would not be sensible on Quest 2 from a performance standpoint. Instead, we opted for an inferior but much cheaper system of rendering a duplicate of the object by with its vertices pushed out along their normals. The effect is not perfect but works well enough for the instances where it is used in the game.
 
-**< Show outlines before and after >**
+{{< figure
+    src="assets/OutlinesAfter.png"
+    alt="Battlefield Intuition outlines on Quest."
+    caption="Battlefield Intuition outlines on Quest."
+	scale=1
+	optimize-image=true
+>}}
 
 ### Geometry Optimization
 Given the time constraints of the project and the fact that we were lacking environment artists in the team, our solution to reduce geometry density was to create a small tool to perform **automatic mesh reduction**. This was done by passing the meshes through **auto LOD generation** and picking the appropriate LOD as the default for that mesh.
 
+{{< figure
+    src="assets/GeometryDensity.png"
+    alt="Wireframe view of The Labs level at the start of development. A lot of dense geometry outside of the play area never seen by the player."
+    caption="Wireframe view of The Labs level at the start of development. A lot of dense geometry outside of the play area never seen by the player."
+	scale=1
+	optimize-image=true
+>}}
+
 This solution worked well with only a few small issues such as visible seams at the edges of meshes which were segmented for level streaming purposes. These visible seams were trivial to fix manually.
 
 ### Quest 3 Enhancements
-For the Quest 3 version, we had more GPU headroom to play with, allowing us to increase the shader complexity by rendering **normal maps** along with enabling additional post processing effects such as **tonemapping** and **color grading**. We also were able to maintain a **1.5 render scale** for most of the game.
+For the Quest 3 version, we had more GPU headroom to play with, allowing us to increase the shader complexity by enabling **material normal calculations**, **roughness**, **higher quality reflections**, and additional post processing effects such as **tonemapping** and **color grading**. We were also able to maintain a **1.5 render scale** for most of the game.
 
 The limited time we had meant we were unable to add additional graphical features to push the Quest 3 much further than this.
 
-**< Show Quest 2 and Quest 3 comparison shots >**
+{{< figure
+    src="assets/MaterialQualityQuest2.png"
+    alt="Material Quality level set to Low for Quest 2."
+    caption="Material Quality level set to Low for Quest 2."
+	scale=1
+	optimize-image=true
+>}}
+
+{{< figure
+    src="assets/MaterialQualityQuest3.png"
+    alt="Material Quality level set to High for Quest 3."
+    caption="Material Quality level set to High for Quest 3."
+	scale=1
+	optimize-image=true
+>}}
 
 ### Gameplay Bug & Crash Fixes
 After the majority of the optimization work was done, I helped the rest of the team with gameplay bug and crash fixes that were reported by our QA team and logged in Jira.
