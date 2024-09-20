@@ -6,7 +6,7 @@ summary: "A short on-rails driving game used to explore graphics concepts."
 cascade:
     showReadingTime: false
     showWordCount: false
-tags: ["University", "Graphics", "C++", "OpenGL"]
+tags: ["University", "Graphics", "OpenGL", "C++"]
 weight: 30
 
 layout: projectSingle

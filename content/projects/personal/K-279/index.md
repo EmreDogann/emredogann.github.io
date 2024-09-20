@@ -6,7 +6,7 @@ summary: "Short atmospheric Horror game <br>**1-Bit Game Jam**"
 cascade:
     showReadingTime: false
     showWordCount: false
-tags: ["Graphics", "Game Jam", "Unity", "C#"]
+tags: ["Game Jam", "Graphics", "Unity", "C#"]
 weight: 40
 
 layout: projectSingle

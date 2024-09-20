@@ -6,7 +6,7 @@ summary: "Chaotic party planner game <br>**Summer Slow Jams 2023: Narrative**"
 cascade:
     showReadingTime: false
     showWordCount: false
-tags: ["Gameplay", "Game Jam", "Unity", "C#"]
+tags: ["Game Jam", "Gameplay", "Unity", "C#"]
 weight: 50
 
 layout: projectSingle

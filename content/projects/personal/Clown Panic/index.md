@@ -6,7 +6,7 @@ summary: "Puzzle Horror game <br>**Go Godot 3 Game Jam**"
 cascade:
     showReadingTime: false
     showWordCount: false
-tags: ["Game Jam", "Godot", "C#", "GDScript"]
+tags: ["Game Jam", "Godot", "GDScript", "C#"]
 weight: 60
 
 layout: projectSingle
