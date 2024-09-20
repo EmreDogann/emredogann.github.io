@@ -45,7 +45,7 @@ I was brought onto the project early on in order to help identify the bulk of th
 In the initial discussions it was expressed that the port would target **72 fps native** (with dynamic resolution) on Quest 2.
 {{< /alert >}}
 
-I began with an initial performance profiling pass using **OVR Metrics** plus **Unreal Insights** and quickly identified that the game's rendering pipeline was bottlenecked from very high draw calls (in the 1000+ draw call range). Meta's official [documentation](https://developers.meta.com/horizon/documentation/unity/unity-perf/#draw-calls-on-meta-quest) suggests a 200-300 draw call range for Quest 2 for a medium simulation. With the help of **Precomputed Visibility** (PCV), **Hierarchical LODs** (HLODs) and **Cull Distance Volumes** (CDVs) we were able to reduce this number down to 400-700 draw calls (any further reduction was difficult to achieve due to the level design and lack of an environment artist to fully optimize geometry).
+I began with an initial performance profiling pass using **OVR Metrics** plus **Unreal Insights** and quickly identified that the game's rendering pipeline was bottlenecked from very high draw calls (in the 1000+ draw call range). Meta's official [documentation](https://developers.meta.com/horizon/documentation/unity/unity-perf/#draw-calls-on-meta-quest) suggests a 200-300 draw call range for Quest 2 for a medium simulation. With the help of **Precomputed Visibility** (PCV), **Hierarchical LODs** (HLODs) and **Cull Distance Volumes** (CDVs) we were able to reduce this number down to 400-700 draw calls.
 
 With this, OVR Metrics still showed **high GPU App Time** with **high GPU usage**, indicating that the application was **GPU limited**. To further diagnose this I took several **Render Doc** captures from a few of the most expensive views in the game. The general capture statistics (draw calls, GPU render time) were recorded in a spreadsheet along with performance counters from the most expensive draw calls (instruction counts, texture reads, wave occupancy, etc.) to indicate what the most expensive materials/objects were in the scene.
 
@@ -138,7 +138,7 @@ Fracked has something known as **Battlefield Intuition** which is a system to ou
 >}}
 
 ### Geometry Optimization
-Given the time constraints of the project and the fact that we were lacking environment artists in the team, our solution to reduce geometry density was to create a small tool to perform **automatic mesh reduction**. This was done by passing the meshes through **auto LOD generation** and picking the appropriate LOD as the default for that mesh.
+Given the time constraints of the project, our solution to reduce geometry density was to create a small tool to perform **automatic mesh reduction**. This was done by passing the meshes through **auto LOD generation** and picking the appropriate LOD as the default for that mesh.
 
 {{< figure
     src="assets/GeometryDensity.png"
