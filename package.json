@@ -18,8 +18,7 @@
     "postcss-cli": "^10.1.0",
     "prettier": "3.0.3",
     "prettier-plugin-go-template": "^0.0.15",
-    "prettier-plugin-toml": "1.0.0",
-    "tailwindcss": "^3.4.17"
+    "prettier-plugin-toml": "1.0.0"
   },
   "name": "my-website",
   "scripts": {
@@ -30,5 +29,8 @@
     "dev:serverlan": "hugo server --bind 192.168.0.15 --baseURL http://192.168.0.15 --port 1313 --buildDrafts --cleanDestinationDir --gc --minify --noHTTPCache",
     "build_css": "set NODE_ENV=production & npx tailwindcss -c ./tailwind.config.js -i ./assets/css/main.css -o ./assets/css/compiled/main.css --minify"
   },
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "dependencies": {
+    "tailwindcss": "^3.4.17"
+  }
 }
