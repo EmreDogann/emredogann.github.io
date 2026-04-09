@@ -1,6 +1,6 @@
 {{ $disableImageOptimization := or .Site.Params.disableImageOptimization (not (.Get "optimize-image" | default true)) | default false }}
 {{ if .Get "default" }}
-  {{ template "_internal/shortcodes/figure.html" . }}
+  {{ partial "hugo-embedded/shortcodes/figure-default.html" . }}
 {{ else }}
   {{ $url := urls.Parse (.Get "src") }}
   {{ $altText := .Get "alt" }}
@@ -23,7 +23,7 @@
     {{ with $resource }}
       <figure {{ with $class }}class="{{ . }}"{{ end }}>
         {{ with $href }}<a href="{{ . }}">{{ end }}
-          {{ if $disableImageOptimization }}
+          {{ if or $disableImageOptimization (eq .MediaType.SubType "svg") }}
 			<img
 				class="my-0 rounded-md{{ if $nozoom }} nozoom {{ end }} dynBRadius"
 				{{ if isset $.Params "scale" }}

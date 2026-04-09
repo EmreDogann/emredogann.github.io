@@ -178,7 +178,7 @@ module.exports = {
     },
   },
   plugins: [
-    require("./themes/blowfish/node_modules/@tailwindcss/typography"),
-    require('./themes/blowfish/node_modules/@tailwindcss/forms'),
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/forms"),
   ],
 };

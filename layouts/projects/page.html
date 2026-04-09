@@ -19,11 +19,11 @@
 		{{ if .Params.showHero | default (.Site.Params.articleProjects.showHero | default false) }}
 			{{ $heroStyle := .Params.heroStyle }}
 			{{ if not $heroStyle }}{{ $heroStyle = .Site.Params.articleProjects.heroStyle }}{{ end }}
-			{{ $heroStyle := print "partials/hero/" $heroStyle ".html" }}
-			{{ if templates.Exists $heroStyle }}
-				{{ partial $heroStyle . }}
+			{{ $heroPartial := print "hero/" $heroStyle ".html" }}
+			{{ if templates.Exists (printf "_partials/%s" $heroPartial) }}
+				{{ partial $heroPartial . }}
 			{{ else }}
-				{{ partial "partials/hero/basic.html" . }}
+				{{ partial "hero/basic.html" . }}
 			{{ end }}
 		{{ end }}
 
@@ -40,7 +40,7 @@
 					{{ partial "article-meta/basic.html" (dict "context" . "scope" "single" "metadata" .Site.Params.articleProjects) }}
 				</div>
 
-				{{ $authorsData := .Site.Data.authors }}
+				{{ $authorsData := hugo.Data.authors }}
 				{{ $taxonomies := .Site.Taxonomies.authors }}
 				{{ $baseURL := .Site.BaseURL }}
 				{{ $taxonomyLink := 0 }}
@@ -81,7 +81,7 @@
 				<div
 					class="toc lg:ltr:pl-5 rtl:pr-5 print:hidden lg:sticky
 					{{ if hasPrefix .Site.Params.header.layout "fixed" -}}
-						lg:top-[140px]
+						lg:top-35
 					{{ else }}
 						lg:top-10
 					{{ end }}
@@ -104,7 +104,7 @@
 				</div>
 			</div>
 
-			<div class="min-w-0 lg:min-w-min-prose min-h-0 max-w-prose lg:mr-[2rem]">
+			<div class="min-w-0 lg:min-w-min-prose min-h-0 max-w-prose lg:mr-8">
 				<div class="ignore-Prose-Padding flex flex-row flex-wrap grow gap-4 justify-center lg:justify-start">
 					{{ with .Params.githubPage }}
 						<a
@@ -160,17 +160,19 @@
     	<script>
         var oid = "views_{{ .File.Path }}"
         var oid_likes = "likes_{{ .File.Path }}"
-      </script> {{ $jsPage := resources.Get "js/page.js" }}
-			{{ $jsPage = $jsPage | resources.Minify | resources.Fingerprint "sha512" }}
-			<script
-				type="text/javascript"
-				src="{{ $jsPage.RelPermalink }}"
-				integrity="{{ $jsPage.Data.Integrity }}"></script>
+      </script>
+			{{ with resources.Get "js/page.js" }}
+				{{ $jsPage := . | resources.Minify | resources.Fingerprint "sha512" }}
+				<script
+					type="text/javascript"
+					src="{{ $jsPage.RelPermalink }}"
+					integrity="{{ $jsPage.Data.Integrity }}"></script>
+			{{ end }}
 		</section>
 		<footer class="pt-8 max-w-prose print:hidden">
 			{{ partial "article-pagination.html" . }}
 			{{ if .Params.showComments | default (.Site.Params.articleProjects.showComments | default false) }}
-				{{ if templates.Exists "partials/comments.html" }}
+				{{ if templates.Exists "_partials/comments.html" }}
 					<div class="pt-3">
 						<hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
 						<div class="pt-3">

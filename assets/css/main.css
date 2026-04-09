@@ -1,8 +1,8 @@
 /*! Blowfish | MIT License | https://github.com/nunocoracao/blowfish */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@config "../../tailwind.config.js";
+
+@import "tailwindcss";
 
 body a,
 body button {
@@ -408,7 +408,7 @@ body:has(#menu-controller:checked) {
   visibility: hidden;
 }
 
-@screen sm {
+@variant sm {
   .thumbnail {
     min-width: 100%;
     height: 180px;
@@ -418,7 +418,7 @@ body:has(#menu-controller:checked) {
   }
 }
 
-@screen md {
+@variant md {
   .thumbnail {
     min-width: 300px;
     min-height: 180px;
@@ -481,7 +481,7 @@ body:has(#menu-controller:checked) {
 .grid-w95 { width: calc(95% - 5px); margin: 0px !important; }
 .grid-w100 { width: calc(100% - 5px); margin: 0px !important; }
 
-@screen sm {
+@variant sm {
   .sm\:grid-w10 { width: calc(10% - 5px); margin: 0px !important; }
   .sm\:grid-w15 { width: calc(15% - 5px); margin: 0px !important; }
   .sm\:grid-w20 { width: calc(20% - 5px); margin: 0px !important; }
@@ -505,7 +505,7 @@ body:has(#menu-controller:checked) {
   .sm\:grid-w100 { width: calc(100% - 5px); margin: 0px !important; }
 }
 
-@screen md {
+@variant md {
   .md\:grid-w10 { width: calc(10% - 5px); margin: 0px !important; }
   .md\:grid-w15 { width: calc(15% - 5px); margin: 0px !important; }
   .md\:grid-w20 { width: calc(20% - 5px); margin: 0px !important; }
@@ -529,7 +529,7 @@ body:has(#menu-controller:checked) {
   .md\:grid-w100 { width: calc(100% - 5px); margin: 0px !important; }
 }
 
-@screen lg {
+@variant lg {
   .lg\:grid-w10 { width: calc(10% - 5px); margin: 0px !important; }
   .lg\:grid-w15 { width: calc(15% - 5px); margin: 0px !important; }
   .lg\:grid-w20 { width: calc(20% - 5px); margin: 0px !important; }
@@ -553,7 +553,7 @@ body:has(#menu-controller:checked) {
   .lg\:grid-w100 { width: calc(100% - 5px); margin: 0px !important; }
 }
 
-@screen xl {
+@variant xl {
   .xl\:grid-w10 { width: calc(10% - 5px); margin: 0px !important; }
   .xl\:grid-w15 { width: calc(15% - 5px); margin: 0px !important; }
   .xl\:grid-w20 { width: calc(20% - 5px); margin: 0px !important; }
@@ -577,28 +577,28 @@ body:has(#menu-controller:checked) {
   .xl\:grid-w100 { width: calc(100% - 5px); margin: 0px !important; }
 }
 
-@screen 2xl {
-  .2xl\:grid-w10 { width: calc(10% - 5px); margin: 0px !important; }
-  .2xl\:grid-w15 { width: calc(15% - 5px); margin: 0px !important; }
-  .2xl\:grid-w20 { width: calc(20% - 5px); margin: 0px !important; }
-  .2xl\:grid-w25 { width: calc(25% - 5px); margin: 0px !important; }
-  .2xl\:grid-w30 { width: calc(30% - 5px); margin: 0px !important; }
-  .2xl\:grid-w33 { width: calc(33% - 5px); margin: 0px !important; }
-  .2xl\:grid-w35 { width: calc(35% - 5px); margin: 0px !important; }
-  .2xl\:grid-w40 { width: calc(40% - 5px); margin: 0px !important; }
-  .2xl\:grid-w45 { width: calc(45% - 5px); margin: 0px !important; }
-  .2xl\:grid-w50 { width: calc(50% - 5px); margin: 0px !important; }
-  .2xl\:grid-w55 { width: calc(55% - 5px); margin: 0px !important; }
-  .2xl\:grid-w60 { width: calc(60% - 5px); margin: 0px !important; }
-  .2xl\:grid-w65 { width: calc(65% - 5px); margin: 0px !important; }
-  .2xl\:grid-w66 { width: calc(66% - 5px); margin: 0px !important; }
-  .2xl\:grid-w70 { width: calc(70% - 5px); margin: 0px !important; }
-  .2xl\:grid-w75 { width: calc(75% - 5px); margin: 0px !important; }
-  .2xl\:grid-w80 { width: calc(80% - 5px); margin: 0px !important; }
-  .2xl\:grid-w85 { width: calc(85% - 5px); margin: 0px !important; }
-  .2xl\:grid-w90 { width: calc(90% - 5px); margin: 0px !important; }
-  .2xl\:grid-w95 { width: calc(95% - 5px); margin: 0px !important; }
-  .2xl\:grid-w100 { width: calc(100% - 5px); margin: 0px !important; }
+@variant 2xl {
+  .\32 xl\:grid-w10 { width: calc(10% - 5px); margin: 0px !important; }
+  .\32 xl\:grid-w15 { width: calc(15% - 5px); margin: 0px !important; }
+  .\32 xl\:grid-w20 { width: calc(20% - 5px); margin: 0px !important; }
+  .\32 xl\:grid-w25 { width: calc(25% - 5px); margin: 0px !important; }
+  .\32 xl\:grid-w30 { width: calc(30% - 5px); margin: 0px !important; }
+  .\32 xl\:grid-w33 { width: calc(33% - 5px); margin: 0px !important; }
+  .\32 xl\:grid-w35 { width: calc(35% - 5px); margin: 0px !important; }
+  .\32 xl\:grid-w40 { width: calc(40% - 5px); margin: 0px !important; }
+  .\32 xl\:grid-w45 { width: calc(45% - 5px); margin: 0px !important; }
+  .\32 xl\:grid-w50 { width: calc(50% - 5px); margin: 0px !important; }
+  .\32 xl\:grid-w55 { width: calc(55% - 5px); margin: 0px !important; }
+  .\32 xl\:grid-w60 { width: calc(60% - 5px); margin: 0px !important; }
+  .\32 xl\:grid-w65 { width: calc(65% - 5px); margin: 0px !important; }
+  .\32 xl\:grid-w66 { width: calc(66% - 5px); margin: 0px !important; }
+  .\32 xl\:grid-w70 { width: calc(70% - 5px); margin: 0px !important; }
+  .\32 xl\:grid-w75 { width: calc(75% - 5px); margin: 0px !important; }
+  .\32 xl\:grid-w80 { width: calc(80% - 5px); margin: 0px !important; }
+  .\32 xl\:grid-w85 { width: calc(85% - 5px); margin: 0px !important; }
+  .\32 xl\:grid-w90 { width: calc(90% - 5px); margin: 0px !important; }
+  .\32 xl\:grid-w95 { width: calc(95% - 5px); margin: 0px !important; }
+  .\32 xl\:grid-w100 { width: calc(100% - 5px); margin: 0px !important; }
 }
 
 /* Carousel Specific Styles */
@@ -606,36 +606,32 @@ body:has(#menu-controller:checked) {
 .ratio-21-9 { padding-top: 42.85%; } /* 21:9 Aspect Ratio */
 .ratio-32-9 { padding-top: 28.125%; } /* 32:9 Aspect Ratio */
 
-@screen sm {
+@variant sm {
   .sm\:ratio-16-9 { padding-top: 56.25%; } /* 16:9 Aspect Ratio */
   .sm\:ratio-21-9 { padding-top: 42.85%; } /* 21:9 Aspect Ratio */
   .sm\:ratio-32-9 { padding-top: 28.125%; } /* 32:9 Aspect Ratio */
 }
 
-@screen md {
+@variant md {
   .md\:ratio-16-9 { padding-top: 56.25%; } /* 16:9 Aspect Ratio */
   .md\:ratio-21-9 { padding-top: 42.85%; } /* 21:9 Aspect Ratio */
   .md\:ratio-32-9 { padding-top: 28.125%; } /* 32:9 Aspect Ratio */
 }
 
-@screen lg {
+@variant lg {
   .lg\:ratio-16-9 { padding-top: 56.25%; } /* 16:9 Aspect Ratio */
   .lg\:ratio-21-9 { padding-top: 42.85%; } /* 21:9 Aspect Ratio */
   .lg\:ratio-32-9 { padding-top: 28.125%; } /* 32:9 Aspect Ratio */
 }
 
-@screen xl {
+@variant xl {
   .xl\:ratio-16-9 { padding-top: 56.25%; } /* 16:9 Aspect Ratio */
   .xl\:ratio-21-9 { padding-top: 42.85%; } /* 21:9 Aspect Ratio */
   .xl\:ratio-32-9 { padding-top: 28.125%; } /* 32:9 Aspect Ratio */
 }
 
-@screen 2xl {
-  .2xl\:ratio-16-9 { padding-top: 56.25%; } /* 16:9 Aspect Ratio */
-  .2xl\:ratio-21-9 { padding-top: 42.85%; } /* 21:9 Aspect Ratio */
-  .2xl\:ratio-32-9 { padding-top: 28.125%; } /* 32:9 Aspect Ratio */
-}
-
-a {
-  font-weight: 700 !important;
+@variant 2xl {
+  .\32 xl\:ratio-16-9 { padding-top: 56.25%; } /* 16:9 Aspect Ratio */
+  .\32 xl\:ratio-21-9 { padding-top: 42.85%; } /* 21:9 Aspect Ratio */
+  .\32 xl\:ratio-32-9 { padding-top: 28.125%; } /* 32:9 Aspect Ratio */
 }

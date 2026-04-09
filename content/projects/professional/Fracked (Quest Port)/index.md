@@ -9,8 +9,6 @@ cascade:
 tags: ["nDreams", "Graphics", "Unreal Engine", "C++"]
 weight: 50
 
-layout: projectSingle
-
 showcaseRegex: "showcase/image*.*"	# Regex for images to show on page
 
 project:

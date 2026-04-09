@@ -4,7 +4,8 @@ date: 2023-09-19T01:26:42+01:00
 showReadingTime: false
 showWordCount: false
 showDate: false
-layout: singleCentered
+type: miscellaneous
+layout: aboutme
 background: "grayscottWorms-Invert"
 backgroundScale: 0.25
 backgroundOpacity: 0.50

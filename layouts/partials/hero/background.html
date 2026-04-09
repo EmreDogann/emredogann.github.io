@@ -1,71 +1,107 @@
-{{ $disableImageOptimization := .Page.Site.Params.disableImageOptimization | default false }}
+{{ $disableImageOptimization := site.Store.Get "disableImageOptimization" }}
 
-{{- $images := .Resources.ByType "image" -}}
-{{- $featured := $images.GetMatch "*background*" -}}
-{{- if not $featured }}
-	{{ $featured = $images.GetMatch "*feature*" }}
-{{ end -}}
+{{ $useDefault := false }}
+{{ $featured := "" }}
+{{ $featuredURL := "" }}
+{{ with .Params.featureimage }}
+  {{ if or (strings.HasPrefix . "http:") (strings.HasPrefix . "https:") }}
+    {{ if site.Params.hotlinkFeatureImage }}
+      {{ $featuredURL = . }}
+    {{ else }}
+      {{ $featured = resources.GetRemote . }}
+    {{ end }}
+  {{ else }}
+    {{ $featured = resources.Get . }}
+  {{ end }}
+{{ end }}
 
-{{- if not $featured }}
-	{{ $featured = $images.GetMatch "{*cover*,*thumbnail*}" }}
-{{ end -}}
+{{ if not (or $featured $featuredURL) }}
+  {{ $images := .Resources.ByType "image" }}
+  {{ range slice "*background*" "*feature*" "*cover*" "*thumbnail*" }}
+    {{ if not $featured }}{{ $featured = $images.GetMatch . }}{{ end }}
+  {{ end }}
+{{ end }}
 
-{{- if not $featured }}
-	{{ with .Site.Params.defaultBackgroundImage }}
-		{{ $featured = resources.Get . }}
-	{{ end }}
-{{ end -}}
-{{ $isParentList := eq (.Scratch.Get "scope") "list"  }}
+{{ if not (or $featured $featuredURL) }}
+  {{ $default := site.Store.Get "defaultBackgroundImage" }}
+  {{ if $default.url }}
+    {{ $featuredURL = $default.url }}
+    {{ $useDefault = true }}
+  {{ else if $default.obj }}
+    {{ $featured = $default.obj }}
+    {{ $useDefault = true }}
+  {{ end }}
+{{ end }}
 
-{{ $shouldBlur := $.Params.layoutBackgroundBlur | default (or 
-    (and ($.Site.Params.article.layoutBackgroundBlur | default true) (not $isParentList)) 
-    (and ($.Site.Params.list.layoutBackgroundBlur | default true) ($isParentList))
-) }}
+{{/* generate image URL if not hotlink */}}
+{{ if not $featuredURL }}
+  {{ with $featured }}
+    {{ $featuredURL = .RelPermalink }}
+    {{ if not (or $disableImageOptimization (eq .MediaType.SubType "svg")) }}
+      {{ $size := site.Store.Get "backgroundImageWidth" }}
+      {{ $featuredURL = (.Resize $size).RelPermalink }}
+    {{ end }}
+  {{ end }}
+{{ end }}
 
-{{ $shouldAddHeaderSpace := $.Params.layoutBackgroundHeaderSpace | default (or 
-    (and ($.Site.Params.article.layoutBackgroundHeaderSpace | default true) (not $isParentList)) 
-    (and ($.Site.Params.list.layoutBackgroundHeaderSpace | default true) ($isParentList))
-) }}
+{{ $isParentList := eq (.Scratch.Get "scope") "list" }}
+{{ $shouldBlur := $.Params.layoutBackgroundBlur | default (or
+  (and ($.Site.Params.article.layoutBackgroundBlur | default true) (not $isParentList))
+  (and ($.Site.Params.list.layoutBackgroundBlur | default true) ($isParentList))
+  )
+}}
+{{ $shouldAddHeaderSpace := $.Params.layoutBackgroundHeaderSpace | default (or
+  (and ($.Site.Params.article.layoutBackgroundHeaderSpace | default true) (not $isParentList))
+  (and ($.Site.Params.list.layoutBackgroundHeaderSpace | default true) ($isParentList))
+  )
+}}
 
-{{- with $featured -}}
-	{{ if $shouldAddHeaderSpace | default true}}
-		<div id="hero" class="h-[150px] md:h-[200px] hero_image opacity-0 transition-opacity duration-150 ease-in-out"></div>
-	{{ end }}
-	<div class="fixed inset-0 w-[100vw] -z-10">
-		{{ if $disableImageOptimization }}
-			{{ with . }}
-				<div id="heroBackground" class="relative h-[800px] single_hero_background nozoom hero_image opacity-0 transition-opacity duration-150 ease-in-out"
-				style="background-image:url({{ .RelPermalink }});">
-			{{ end }}
-		{{ else }}
-			{{ with .Resize "1200x" }}
-				<div id="heroBackground" class="relative h-[800px] single_hero_background nozoom hero_image opacity-0 transition-opacity duration-150 ease-in-out"
-				style="background-image:url({{ .RelPermalink }});">
-			{{ end }}
-		{{ end }}
+{{- with $featuredURL -}}
+  {{ if $shouldAddHeaderSpace | default true }}
+    <div id="hero" class="h-[150px] md:h-[200px] hero_image opacity-0 transition-opacity duration-150 ease-in-out"></div>
+  {{ end }}
+  <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom">
+    {{ $style := "" }}
+    {{ $defaultPosition := cond $useDefault site.Params.imagePosition false }}
+    {{ with $.Params.imagePosition | default $defaultPosition }}
+      {{ $style = printf "object-position: %s;" . }}
+    {{ end }}
+    <img
+      id="background-image"
+      src="{{ . }}"
+      role="presentation"
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+      class="absolute inset-0 w-full h-full object-cover hero_image opacity-0 transition-opacity duration-150 ease-in-out"
+      {{ if $style }}style="{{ $style | safeCSS }}"{{ end }}>
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal"></div>
+    <div
+      class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal"></div>
+  </div>
 
-			<div class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal"></div>
-			<div class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal"></div>
-		</div>
-	</div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var heroImages = document.getElementsByClassName('hero_image');
+      for (let image of heroImages) {
+        image.style.opacity = 1;
+      }
+    });
+  </script>
 
-	{{ if $shouldBlur | default false }}
-	<div id="background-blur" class="fixed opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl"></div>
-
-	<script>
-		window.addEventListener('scroll', function (e) {
-			var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-			var background_blur = document.getElementById('background-blur');
-			background_blur.style.opacity = (scroll / 300)
-		});
-		
-		document.addEventListener("DOMContentLoaded", function(){
-			var heroImages = document.getElementsByClassName('hero_image');
-			for (let image of heroImages) {
-				image.style.opacity = 1;
-			}
-		})
-	</script>
-
-	{{ end }}
+  {{ if $shouldBlur | default false }}
+    <div
+      id="background-blur"
+      class="fixed opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-xl bg-neutral-100/75 dark:bg-neutral-800/60"></div>
+    {{ $backgroundBlur := resources.Get "js/background-blur.js" }}
+    {{ $backgroundBlur = $backgroundBlur | resources.Minify | resources.Fingerprint ($.Site.Params.fingerprintAlgorithm | default "sha512") }}
+    <script
+      type="text/javascript"
+      src="{{ $backgroundBlur.RelPermalink }}"
+      integrity="{{ $backgroundBlur.Data.Integrity }}"
+      data-blur-id="background-blur"
+      data-image-id="background-image"
+      data-image-url="{{ . }}"></script>
+  {{ end }}
 {{- end -}}

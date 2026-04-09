@@ -71,6 +71,7 @@ weight = 20
 
 [[footer]]
 name = "contact@emredogan.co.uk"
+url = "mailto:contact@emredogan.co.uk"
 weight = 10
 
 [[footer]]
