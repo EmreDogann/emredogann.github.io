@@ -18,7 +18,7 @@
     "postcss-cli": "^10.1.0",
     "prettier": "3.0.3",
     "prettier-plugin-go-template": "^0.0.15",
-    "prettier-plugin-toml": "1.0.0"
+    "prettier-plugin-toml": "^2.0.6"
   },
   "name": "my-website",
   "scripts": {
